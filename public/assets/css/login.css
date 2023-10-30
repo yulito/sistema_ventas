@@ -1,0 +1,28 @@
+body, html{
+    height: 100vh;
+}
+body{
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+
+    background-image: linear-gradient(to bottom right, rgb(194, 194, 194), rgb(59, 59, 59));
+}
+
+.container-sm{
+    border: 1px solid gray;
+    border-radius: 8px;
+    max-width: 600px;
+    background-color: #dfdfdf;
+    box-shadow: 2px 4px 10px #000;
+}
+.enter{
+    background-color: aquamarine;
+    border-bottom: 1px solid gray;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
