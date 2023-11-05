@@ -1,0 +1,120 @@
+/* --- COLORES --- */
+:root{    
+    --color0:rgb(85, 85, 85);
+    /* -- para el background -- */
+    --color1:#04364A;
+    --color2:#176B87;
+    --color3:#64CCC5;
+    --color4:#DAFFFB;
+    /* -- opcion para elementos -- */
+    --color5:#EBE76C;
+    --color6:#F0B86E;
+    --color7:#ED7B7B;
+    --color8:#836096;
+    --color9:rgb(131, 218, 131);
+    /* -- neutros -- */
+    --negro:#000;
+    --blanco:#ffffff;
+}
+
+.green{ background-color: var(--color9);}
+.violet{ background-color: var(--color8);}
+.yellow{ background-color: var(--color5);}
+.orange{ background-color: var(--color6);}
+.red{ background-color: var(--color7);}
+.blue{ background-color: var(--color3);}
+.gray{ background-color: var(--color0);}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100vh;
+}
+body{    
+    height: 100vh;
+}
+
+.section{
+    padding: 0 40px 40px 40px;
+    padding-top: 20px;
+    grid-area: section;
+    background-color: var(--blanco);
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.sidebar{
+    grid-area: sidebar;
+    background-color:var(--color1);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 10px;  
+    gap: 20px;
+    color: var(--blanco); 
+}
+.sidebar > ul, li{
+    width: 100%;
+    background-color: var(--color1) !important;
+    color: var(--blanco) !important;
+}
+.sidebar > ul > li:hover{
+    background-color: var(--color2) !important;
+}
+.textTitle{
+    font-style: italic;
+    color: var(--color0);
+    border-bottom: 1px solid var(--color0);
+}
+.box-cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+.item-card{
+    height: 100px;
+    width:140px; 
+    padding: 20px;
+    margin: 10px;
+    border:1px solid var(--negro);
+    border-radius: 8px;
+    box-shadow: 2px 4px 8px var(--negro);
+    text-align: center; 
+}
+.item-card:hover{
+    background-color: var(--color4);
+    color: var(--color2);
+    border-color: var(--color2);
+}
+.item-card:active{
+    box-shadow: 2px 3px 2px var(--negro);
+    background-color: var(--color3);
+    color: var(--color1);
+    border-color: var(--color1);
+}
+.main{
+    display: grid;
+    grid-template:        
+        "sidebar section" 100vh /
+         260px  auto   
+        ;
+}
+
+@media (max-width: 1000px){
+    .main{
+        grid-template:        
+        "sidebar" auto
+        "section" auto /
+        100%
+        ;
+    }
+}

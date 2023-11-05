@@ -8,6 +8,7 @@ use App\Helpers\Msg;
 class SessionController extends Controller{
 
     public function index(){
-        return $this->view('login.login'); 
+        //return $this->view('login.login'); 
+        return $this->view('dashboard');
     }
 }
