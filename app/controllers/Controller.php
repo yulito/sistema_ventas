@@ -4,11 +4,11 @@ namespace App\Controllers;
 
 //de esta manera accedemos a las funciones de los trit en las vistas
 use Lib\Csrf;
-//use Lib\Utils;
+use Lib\Utils;
 
 class Controller{
 
-    use Csrf; //, Utils;
+    use Csrf, Utils;
 
     public function view($route, $data = []) 
     {

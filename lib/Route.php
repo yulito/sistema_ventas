@@ -6,8 +6,6 @@ use App\Helpers\Msg;
 
 class Route
 {
-    //Lo que harán las siguientes funciones es relacionar la url (a traves de la uri) con la funcion correspondiente segun las rutas en web.php
-    //ojo esta $uri en realidad en la ruta declarada en web.php
     private static $routes = [];
 
     public static function get($uri, $callback)
@@ -22,8 +20,6 @@ class Route
         self::$routes['POST'][$uri] = $callback;
     }
     
-    //Digamos que esta funcion es el motor que hara trabajar las funciones anteriores
-    //aca obtenemos la $uri real para compararla con la que obtuvimos con las funciones get y post de aqui arriba.
     public static function dispatch()
     {
         $uri = $_SERVER['REQUEST_URI'];
@@ -63,7 +59,7 @@ class Route
                 return;
             }           
         }
-        echo Msg::ERROR_404;
+        echo Msg::ERROR_404;    
     }
 
 

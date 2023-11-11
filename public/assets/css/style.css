@@ -12,6 +12,8 @@
     --color7:#ED7B7B;
     --color8:#836096;
     --color9:rgb(131, 218, 131);
+    --color10:rgb(179, 0, 0);
+    --color11:rgb(0, 128, 0);
     /* -- neutros -- */
     --negro:#000;
     --blanco:#ffffff;
@@ -24,6 +26,8 @@
 .red{ background-color: var(--color7);}
 .blue{ background-color: var(--color3);}
 .gray{ background-color: var(--color0);}
+.dark-red{color: var(--color10);}
+.dark-green{color:var(--color11);}
 
 *{
     box-sizing: border-box;
@@ -80,6 +84,7 @@ body{
     align-items: flex-start;
     gap: 20px;
 }
+
 .item-card{
     height: 100px;
     width:140px; 
