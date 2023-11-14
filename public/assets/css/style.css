@@ -52,6 +52,18 @@ body{
     flex-wrap: wrap;
     gap: 20px;
 }
+.edit-box{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.tab-pane{
+    height: 400px;
+    overflow-y: auto !important;
+}
 .sidebar{
     grid-area: sidebar;
     background-color:var(--color1);

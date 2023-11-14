@@ -12,13 +12,12 @@ class Msg{
     //login
     const MSG_SUCCESS   = "Operación realizada correctamente!.";
     const TYPE_INCORRECT   = "Tipo de usuario INCORRECTO.";
-    const NAME_EXIST    = "El nombre de usuario ya esta registrado.";
+    const NAME_EXIST    = "Este nombre ya esta registrado.";
     const AUTH_ERROR    = "Idenficación fallida!!.";
     //recovery
     const PASS_NOTMATCH = "Las contraseñas no coinciden";
     const FAILED_OPERATION = "La operación a fallado!.";
     //http
-    const ERROR_200 = "Operación exitosa!";
-    const ERROR_404 = "ERROR 404. la página no se encuentra";
-    const ERROR_500 = "ERROR 500. Error de servidor";
+    const HTTP_200 = "Operación exitosa!";
+    const ERROR_404 = "ERROR 404. la página no se encuentra";    
 }

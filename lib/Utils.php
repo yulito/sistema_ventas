@@ -2,20 +2,31 @@
 
 namespace Lib;
 
-use App\Models\Category;
 use App\Models\TypeUser;
+use App\Models\Area;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 trait Utils{
 
-    public function showCategories(){ 
-		/*$cat = new Category();
-		$cat = $cat->showCat();
-		return $cat;*/
-    }
+  public function showTypeUser(){
+  $obj= new TypeUser();
+  $obj= $obj->getAll();
+  return $obj;
+  }
 
-    public function showTypeUser(){
-        $cat = new TypeUser();
-		$cat = $cat->getAll();
-		return $cat;
-    }
+  public function showArea(){
+    $obj = new Area();
+    $obj = $obj->getAll();
+    return $obj;
+  }
+  
+  public function showCategories(){ 
+  /*$cat = new Category();
+  $cat = $cat->showCat();
+  return $cat;*/
+  }
+
+  
+    
 }

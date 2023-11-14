@@ -48,7 +48,7 @@ class User extends Model
     }
 
     public function getAll(){
-        $sql = "SELECT id_usuario, nomusuario, id_tipo, nomtipo FROM usuario INNER JOIN tipo_usuario USING(id_tipo)" ;
+        $sql = "SELECT id_usuario, nomusuario, id_tipo, nomtipo FROM usuario INNER JOIN tipo_usuario USING(id_tipo)";
         $user = $this->connection->query($sql);
         if($user->num_rows > 0){
             while($data = $user->fetch_assoc()){
@@ -62,8 +62,22 @@ class User extends Model
     }
   
     public function validateName($name){
-        $sql = "SELECT * FROM usuario WHERE nomusuario = '$name'";
+        $sql = "SELECT id_usuario, nomusuario, id_tipo, nomtipo 
+                FROM usuario INNER JOIN tipo_usuario USING(id_tipo) 
+                WHERE nomusuario = '$name'";
+
         $result = $this->connection->query($sql);
-        return $result->fetch_assoc();
+        return $result->fetch_object();
+    }
+
+    public function update($id, $p){
+        $sql="UPDATE usuario SET 
+            nomusuario = '{$this->getName()}', ";
+        if($p){
+            $sql .= " clave = '{$this->getPass()}', ";
+        }
+        $sql .= "id_tipo = '{$this->getType()}' WHERE id_usuario = '$id'";
+        $result = $this->connection->query($sql);
+        return $result;
     }
 }

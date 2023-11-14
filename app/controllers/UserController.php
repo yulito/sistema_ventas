@@ -13,9 +13,9 @@ class UserController extends Controller{
     }
 
     public function store(){
-
+        
         $this->headJson();
-        $this->validateToken($_POST['token_']);
+        $this->validateToken($_POST['token_']);            
 
         $name = !empty($_POST['user']) ? $_POST['user'] : NULL;
         $pass = !empty($_POST['password']) ? $_POST['password'] : NULL;
@@ -51,11 +51,10 @@ class UserController extends Controller{
 
                 $msg['msg']["user"] = $result;
                 $msg['msg']['success'] = Msg::MSG_SUCCESS;   
-            }                        
+            }            
         }
         //---- Enviar msg
         echo json_encode($msg['msg']);
-
     }
 
     public function show(){
@@ -64,5 +63,48 @@ class UserController extends Controller{
         $obj = new User();
         $user = $obj->getAll();
         echo json_encode($user);
+    }
+
+    public function viewEdit($name){  
+        $name = str_replace("0y0", " ", $name);
+        $obj = new User();
+        $user = $obj->validateName($name);
+        if($user){
+            return $this->view('editUser', compact("user"));
+        }else{
+            $msg = Msg::ERROR_404;
+            return $this->view('error/page404', compact("msg"));
+        }        
+    }
+
+    public function edit(){
+
+        $this->headJson();
+        $this->validateToken($_POST['token_']); 
+        
+        $id = !empty($_POST['idUser']) ? $_POST['idUser'] : null;
+        $name = !empty($_POST['nameUser']) ? $_POST['nameUser'] : null;
+        $type = !empty($_POST['type']) ? $_POST['type'] : null;
+        $pass = isset($_POST['password']) ? $_POST['password'] : null;
+
+        $msg['msg'] = [];
+        if($name == null || $type == null || $id == null){
+            $msg['msg']['field'] = Msg::ALL_FIELDS;
+        }
+        else{
+            $param = false;
+            $obj = new User();
+            if($pass != null || !empty($pass)){
+                $obj->setPassword($pass);
+                $param = true;
+            }
+            $obj->setName($name);
+            $obj->setType($type);
+            $obj->update($id, $param);
+            $msg['msg']['success'] = Msg::MSG_SUCCESS;
+        }
+
+        echo json_encode($msg['msg']);
+       
     }
 }

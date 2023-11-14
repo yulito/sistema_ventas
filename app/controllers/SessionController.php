@@ -11,4 +11,5 @@ class SessionController extends Controller{
         //return $this->view('login.login'); 
         return $this->view('dashboard');
     }
+
 }

@@ -35,6 +35,6 @@ class Controller{
 
     public function headJson()
     {
-        return header("Content-Type: application/json");
+        return header("Content-Type: application/json; charset=utf-8");
     }
 }

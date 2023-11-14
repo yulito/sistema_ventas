@@ -4,8 +4,7 @@
 <div class="textTitle">
     <h2>Gestión de usuarios Vendedores</h2>
 </div>
-
-
+    
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Lista de usuarios</button>
@@ -33,14 +32,16 @@
                         <td class="td1"> </td>
                         <td class="td2"> </td>
                         <td>
-                        <button value="" 
-                        type="button" id="btn-edit-user" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editUser"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 
-                            2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 
-                            3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                        </svg> 
-                        </button>                                               
+                        <a href="">
+                            <button 
+                            type="button" id="btn-edit-user" class="btn btn-warning" > 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 
+                                2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 
+                                3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                            </svg> 
+                            </button> 
+                        </a>                                        
                         </td>                    
                     </tr> 
                     </template>
@@ -81,54 +82,7 @@
             </form><br>
 
         </div>       
-    </div>
-
-    <!------ EDITAR USUARIO -->    
-    <!-- Modal -->
-    <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-            <form id="formUser">
-                <input  type="hidden" name="token_" value="<?php echo $this->createTokenCsrf(); ?>">
-                    <div class="mb-3 row">
-                        <label for="user" class="col-sm-2 col-form-label">Nombre</label>
-                        <div class="col-sm-10">
-                        <input type="text" class="form-control" id="user" name="user">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="password" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="min. 4 y max. 8 caracteres">
-                        </div>
-                    </div>
-                    <select class="form-select" name="typeUser" id="typeUser" aria-label="Default select example">
-                        <option selected disabled>Selecciona el tipo de usuario</option>
-
-                        <?php $objs = $this->showTypeUser(); ?>
-                        <?php while($typeUser = $objs->fetch_object()): ?>                    
-                            <option value=<?=$typeUser->id_tipo ?>>
-                                <?= $typeUser->nomtipo ?>
-                            </option>                    
-                        <?php endwhile; ?>
-
-                    </select>
-                    <br>
-                <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Cerrar">
-                <input type="button" value="Guardar" class="btn btn-primary" id="btn-new-user">
-            </form><br>
-
-        </div>        
-        </div>
-    </div>
-    </div>
-    <!------------------------>
+    </div>                     
 
 <script src="/assets/js/register.js"></script>
 <?php require_once "layout/down.php"; ?>

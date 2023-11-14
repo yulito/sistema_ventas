@@ -9,9 +9,8 @@ class ProductController extends Controller{
 
     public function index(){
         
-    }
-
-    public function adminProduct(){
         return $this->view('productAdmin');
     }
+
+
 }

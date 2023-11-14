@@ -1,6 +1,6 @@
 
     <div class="textTitle">
-        <h2>Contenido principal</h2>
+        <h2>Panel principal</h2>
     </div>
     <div class="box-cards">
 
