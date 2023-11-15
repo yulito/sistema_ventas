@@ -1,16 +1,16 @@
-//add area
-if(document.querySelector('.btn-add-area') !== null){
+//add categoria
+if(document.querySelector('.btn-add-cat') !== null){
 
-    const formArea = document.querySelector('#formArea')
-    const btnAddArea = document.querySelector('.btn-add-area')
-    const urlSaveArea = "/agregar-area";
+    const formCat = document.querySelector('#formCat')
+    const btnAddCat = document.querySelector('.btn-add-cat')
+    const urlSaveCat = "/agregar-categoria";
 
-    btnAddArea.addEventListener('click', (e)=>{
+    btnAddCat.addEventListener('click', (e)=>{
         e.preventDefault
 
-        const data = new FormData(formArea)
+        const data = new FormData(formCat)
 
-        fetch(urlSaveArea,{
+        fetch(urlSaveCat,{
             method:'post',
             body:data
         }).then(response => response.json())
@@ -35,13 +35,13 @@ if(document.querySelector('.btn-add-area') !== null){
                 h6.style.color="var(--color11)";
                 h6.textContent = $msg.success
                 frag.append(h6)
-                formArea.reset()
+                formCat.reset()
              }
-             formArea.prepend(frag)
+             formCat.prepend(frag)
 
             //duracion de msg
             setTimeout(() => {
-                formArea.removeChild(formArea.firstElementChild)  
+                formCat.removeChild(formCat.firstElementChild)  
             }, 6000);
 
         })
@@ -49,19 +49,19 @@ if(document.querySelector('.btn-add-area') !== null){
     })
 }
 
-//edit area
-if(document.querySelector('.btn-edit-area') !== null){
+//edit categoria
+if(document.querySelector('.btn-edit-cat') !== null){
 
-    const formEditArea = document.querySelector('#formEditArea')
-    const btnEditArea = document.querySelector('.btn-edit-area')
-    const urlEditArea = "/editar-area";    
+    const formEditCat = document.querySelector('#formEditCat')
+    const btnEditCat = document.querySelector('.btn-edit-cat')
+    const urlEditCat = "/editar-categoria";    
 
-    btnEditArea.addEventListener('click', (e)=>{
+    btnEditCat.addEventListener('click', (e)=>{
         e.preventDefault
         
-        const data = new FormData(formEditArea)
+        const data = new FormData(formEditCat)
         
-        fetch(urlEditArea, {
+        fetch(urlEditCat, {
             method:'post',
             body:data
         }).then( response => response.json())
@@ -87,11 +87,11 @@ if(document.querySelector('.btn-edit-area') !== null){
                 h6.textContent = msg.success
                 frag.append(h6)                
              }
-             formEditArea.prepend(frag)
+             formEditCat.prepend(frag)
 
             //duracion de msg
             setTimeout(() => {
-                formEditArea.removeChild(formEditArea.firstElementChild)  
+                formEditCat.removeChild(formEditCat.firstElementChild)  
             }, 6000);
         })
     })                  

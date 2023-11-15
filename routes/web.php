@@ -5,6 +5,7 @@ use App\Controllers\SessionController;
 use App\Controllers\UserController;
 use App\Controllers\ProductController;
 use App\Controllers\AreaController;
+use App\Controllers\CategoryController;
 
 // ---- todas las rutas
 Route::get('/', [SessionController::class, 'index']);
@@ -19,7 +20,17 @@ Route::post('/editar-usuario', [UserController::class, 'edit']);
 
 Route::get('/gestion-productos', [ProductController::class, 'index']);
 
+//subcategoria
 
+//categoria
+Route::get('/agregar-categoria', [CategoryController::class, 'index']);
+Route::post('/agregar-categoria', [CategoryController::class, 'store']);
+Route::get('/editar-categoria/:id', [CategoryController::class, 'showEdit']);
+Route::post('/editar-categoria', [CategoryController::class, 'edit']);
+//marca
+
+
+//area
 Route::get('/agregar-area', [AreaController::class, 'index']);
 Route::post('/agregar-area', [AreaController::class, 'store']);
 Route::get('/editar-area/:id', [AreaController::class, 'showEdit']);

@@ -22,9 +22,9 @@ trait Utils{
   }
   
   public function showCategories(){ 
-  /*$cat = new Category();
-  $cat = $cat->showCat();
-  return $cat;*/
+    $obj = new Category();
+    $obj = $obj->getAll();
+    return $obj;
   }
 
   

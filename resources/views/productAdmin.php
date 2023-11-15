@@ -10,8 +10,8 @@
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-prod" type="button" role="tab" aria-controls="nav-prod" aria-selected="true">Productos</button>
-            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-cat" type="button" role="tab" aria-controls="nav-cat" aria-selected="false">Categorias</button>
-            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-sub" type="button" role="tab" aria-controls="nav-sub" aria-selected="false">Sub-categorias</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-cat" type="button" role="tab" aria-controls="nav-cat" aria-selected="false">Categorías</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-sub" type="button" role="tab" aria-controls="nav-sub" aria-selected="false">Sub-categorías</button>
             <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-area" type="button" role="tab" aria-controls="nav-area" aria-selected="false">Áreas</button>
         </div>
     </nav>
@@ -58,10 +58,11 @@
         <!------------ CATEGORIAS -->
 
         <div class="tab-pane fade" id="nav-cat" role="tabpanel" aria-labelledby="nav-profile-tab" >
+        <a href="/agregar-categoria">
             <button class="btn btn-primary" style="margin-bottom: 20px;">
             Agregar
             </button>
-            
+        </a>  
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -70,14 +71,29 @@
                     <th scope="col">Editar</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Cemento</td>
-                    <td> 
-                        <button class="btn btn-warning">Editar</button>                        
-                    </td>                    
-                    </tr>                    
+                <tbody>                                                                                 
+                    <?php $objCat = $this->showCategories(); ?>
+                    <?php if(!empty($objCat)): ?>
+                        <?php $countcat = 1;
+                            while($cat = $objCat->fetch_object()): ?> 
+                            <tr>
+                                <th scope="row"><?= $countcat?></th>
+                                <td><?= $cat->cat;?></td>
+                                <td>
+                                    <a href="/editar-categoria/<?=$cat->id_cat?>">
+                                        <button class="btn btn-warning" >Editar</button>  
+                                    </a>                      
+                                </td>                    
+                            </tr>
+                            <?php $countcat++; 
+                            endwhile;?>
+                        <?php else: ?>                    
+                                <tr>
+                                    <th> - </th>
+                                    <td><h3><span style="color: blue;">No hay nada agregado a esta sección.</span></h3></td> 
+                                    <th> - </th>
+                                </tr>                   
+                        <?php endif; ?>
                 </tbody>
             </table>
         </div>        
@@ -132,7 +148,7 @@
                         while($area = $objArea->fetch_object()): ?> 
                     <tr>
                         <th scope="row"><?= $count?></th>
-                        <td><?= $area->area_; //Construcción / Hormigón?></td>
+                        <td><?= $area->area_;?></td>
                         <td>
                             <a href="/editar-area/<?=$area->id_area?>">
                                 <button class="btn btn-warning" >Editar</button>  
