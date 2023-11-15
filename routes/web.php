@@ -5,7 +5,8 @@ use App\Controllers\SessionController;
 use App\Controllers\UserController;
 use App\Controllers\ProductController;
 use App\Controllers\AreaController;
-use App\Controllers\CategoryController;
+use App\Controllers\CategoryController; 
+use App\Controllers\BrandController;
 
 // ---- todas las rutas
 Route::get('/', [SessionController::class, 'index']);
@@ -28,7 +29,10 @@ Route::post('/agregar-categoria', [CategoryController::class, 'store']);
 Route::get('/editar-categoria/:id', [CategoryController::class, 'showEdit']);
 Route::post('/editar-categoria', [CategoryController::class, 'edit']);
 //marca
-
+Route::get('/agregar-marca', [BrandController::class, 'index']);
+Route::post('/agregar-marca', [BrandController::class, 'store']);
+Route::get('/editar-marca/:id', [BrandController::class, 'showEdit']);
+Route::post('/editar-marca', [BrandController::class, 'edit']);
 
 //area
 Route::get('/agregar-area', [AreaController::class, 'index']);

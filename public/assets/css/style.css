@@ -63,6 +63,7 @@ body{
 .tab-pane{
     height: 400px;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
 }
 .sidebar{
     grid-area: sidebar;

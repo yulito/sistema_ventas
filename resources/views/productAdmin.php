@@ -13,10 +13,12 @@
             <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-cat" type="button" role="tab" aria-controls="nav-cat" aria-selected="false">Categorías</button>
             <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-sub" type="button" role="tab" aria-controls="nav-sub" aria-selected="false">Sub-categorías</button>
             <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-area" type="button" role="tab" aria-controls="nav-area" aria-selected="false">Áreas</button>
+            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-brand" type="button" role="tab" aria-controls="nav-brand" aria-selected="false">Marcas</button>
         </div>
     </nav>
     <br>
     <div class="tab-content" id="nav-tabContent">
+
         <!------------ PRODUCTOS -->
         <div class="tab-pane fade show active" id="nav-prod" role="tabpanel" aria-labelledby="nav-home-tab">
 
@@ -56,7 +58,6 @@
         <?php require_once "layout/modals/prodmodal.php"; ?>
 
         <!------------ CATEGORIAS -->
-
         <div class="tab-pane fade" id="nav-cat" role="tabpanel" aria-labelledby="nav-profile-tab" >
         <a href="/agregar-categoria">
             <button class="btn btn-primary" style="margin-bottom: 20px;">
@@ -73,7 +74,7 @@
                 </thead>
                 <tbody>                                                                                 
                     <?php $objCat = $this->showCategories(); ?>
-                    <?php if(!empty($objCat)): ?>
+                    <?php if($objCat): ?>
                         <?php $countcat = 1;
                             while($cat = $objCat->fetch_object()): ?> 
                             <tr>
@@ -143,7 +144,7 @@
                 </thead>
                 <tbody>
                 <?php $objArea = $this->showArea(); ?>
-                <?php if(isset($objArea)): ?>
+                <?php if($objArea): ?>
                     <?php $count = 1;
                         while($area = $objArea->fetch_object()): ?> 
                     <tr>
@@ -168,8 +169,49 @@
             </table>
         </div>         
 
-    </div>
+        <!------------ MARCAS -->
+        <div class="tab-pane fade" id="nav-brand" role="tabpanel" aria-labelledby="nav-profile-tab" >
+            <a href="/agregar-marca">
+                <button class="btn btn-primary" style="margin-bottom: 20px;">
+                Agregar
+                </button>
+            </a>            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Marca</th>        
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $objBrand = $this->showBrand(); ?>
+                    <?php if($objBrand): ?>
+                        <?php $countbrand = 1;
+                            while($brand = $objBrand->fetch_object()): ?> 
+                        <tr>
+                            <th scope="row"><?= $countbrand?></th>
+                            <td><?= $brand->marca_;?></td>
+                            <td>
+                                <a href="/editar-marca/<?=$brand->id_marca?>">
+                                    <button class="btn btn-warning" >Editar</button>  
+                                </a>                      
+                            </td>                    
+                        </tr>
+                        <?php $countbrand++; 
+                        endwhile;?>
+                        <?php else: ?>                    
+                                <tr>
+                                    <th> - </th>
+                                    <td><h3><span style="color: blue;">No hay nada agregado a esta sección.</span></h3></td> 
+                                    <th> - </th>
+                                </tr>                   
+                        <?php endif; ?>
+                </tbody>
+            </table>
+        </div>  
 
+    </div>
 </div>
 
 

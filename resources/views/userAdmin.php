@@ -4,7 +4,7 @@
 <div class="textTitle">
     <h2>Gestión de usuarios Vendedores</h2>
 </div>
-    
+<div>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Lista de usuarios</button>
@@ -12,7 +12,7 @@
         </div>
     </nav>
     <br>
-    <div class="tab-content" id="nav-tabContent" style="max-width: 400px;">
+    <div class="tab-content" id="nav-tabContent" style="max-width: 500px;">
         <!------------ Lista de usuarios -->
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <table class="table table-striped">
@@ -82,7 +82,8 @@
             </form><br>
 
         </div>       
-    </div>                     
+    </div> 
+</div>                    
 
 <script src="/assets/js/register.js"></script>
 <?php require_once "layout/down.php"; ?>

@@ -4,6 +4,7 @@ namespace Lib;
 
 use App\Models\TypeUser;
 use App\Models\Area;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\SubCategory;
 
@@ -27,6 +28,10 @@ trait Utils{
     return $obj;
   }
 
-  
+  public function showBrand(){ 
+    $obj = new Brand();
+    $obj = $obj->getAll();
+    return $obj;
+  }
     
 }
