@@ -54,56 +54,57 @@
                 </tbody>
             </table>
         </div>
-
         <?php require_once "layout/modals/prodmodal.php"; ?>
 
         <!------------ CATEGORIAS -->
         <div class="tab-pane fade" id="nav-cat" role="tabpanel" aria-labelledby="nav-profile-tab" >
-        <a href="/agregar-categoria">
-            <button class="btn btn-primary" style="margin-bottom: 20px;">
-            Agregar
-            </button>
-        </a>  
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Categoría</th>        
-                    <th scope="col">Editar</th>
-                    </tr>
-                </thead>
-                <tbody>                                                                                 
-                    <?php $objCat = $this->showCategories(); ?>
-                    <?php if($objCat): ?>
-                        <?php $countcat = 1;
-                            while($cat = $objCat->fetch_object()): ?> 
-                            <tr>
-                                <th scope="row"><?= $countcat?></th>
-                                <td><?= $cat->cat;?></td>
-                                <td>
-                                    <a href="/editar-categoria/<?=$cat->id_cat?>">
-                                        <button class="btn btn-warning" >Editar</button>  
-                                    </a>                      
-                                </td>                    
-                            </tr>
-                            <?php $countcat++; 
-                            endwhile;?>
-                        <?php else: ?>                    
+            <a href="/agregar-categoria">
+                <button class="btn btn-primary" style="margin-bottom: 20px;">
+                Agregar
+                </button>
+            </a>  
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Categoría</th>        
+                        <th scope="col">Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>                                                                                 
+                        <?php $objCat = $this->showCategories(); ?>
+                        <?php if($objCat): ?>
+                            <?php $countcat = 1;
+                                while($cat = $objCat->fetch_object()): ?> 
                                 <tr>
-                                    <th> - </th>
-                                    <td><h3><span style="color: blue;">No hay nada agregado a esta sección.</span></h3></td> 
-                                    <th> - </th>
-                                </tr>                   
-                        <?php endif; ?>
-                </tbody>
-            </table>
-        </div>        
+                                    <th scope="row"><?= $countcat?></th>
+                                    <td><?= $cat->cat;?></td>
+                                    <td>
+                                        <a href="/editar-categoria/<?=$cat->id_cat?>">
+                                            <button class="btn btn-warning" >Editar</button>  
+                                        </a>                      
+                                    </td>                    
+                                </tr>
+                                <?php $countcat++; 
+                                endwhile;?>
+                            <?php else: ?>                    
+                                    <tr>
+                                        <th> - </th>
+                                        <td><h3><span style="color: blue;">No hay nada agregado a esta sección.</span></h3></td> 
+                                        <th> - </th>
+                                    </tr>                   
+                            <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>        
 
         <!------------ SUBCATEGORIAS -->
         <div class="tab-pane fade" id="nav-sub" role="tabpanel" aria-labelledby="nav-profile-tab" >
-            <button class="btn btn-primary" style="margin-bottom: 20px;">
-            Agregar
-            </button>
+            <a href="/agregar-subcategoria">
+                <button class="btn btn-primary" style="margin-bottom: 20px;">
+                Agregar
+                </button>
+            </a>            
             
             <table class="table table-striped">
                 <thead>
@@ -115,18 +116,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Cemento Blanco</td>
-                    <td>Cemento</td>
-                    <td>
-                        <button class="btn btn-warning">Editar</button>                        
-                    </td>                    
-                    </tr>                    
+                    <?php $objSub = $this->showSubCat(); ?>
+                        <?php if($objSub): ?>
+                            <?php $countsub = 1;
+                            while($sub = $objSub->fetch_object()): ?> 
+                            <tr>
+                                <th scope="row"><?= $countsub?></th>
+                                <td><?= $sub->subcat;?></td>
+                                <td><?= $sub->cat;?></td>
+                                <td>
+                                    <a href="/editar-subcategoria/<?=$sub->id_sub?>">
+                                        <button class="btn btn-warning" >Editar</button>  
+                                    </a>                      
+                                </td>                    
+                            </tr>
+                            <?php $countsub++; 
+                            endwhile;?>
+                        <?php else: ?>                    
+                                <tr>
+                                    <th> - </th>
+                                    <td><h3><span style="color: blue;">No hay nada agregado a esta sección.</span></h3></td> 
+                                    <th> - </th>
+                                </tr>                   
+                        <?php endif; ?>             
                 </tbody>
             </table>
         </div>             
-
         <!------------ AREAS -->
         <div class="tab-pane fade" id="nav-area" role="tabpanel" aria-labelledby="nav-profile-tab" >
             <a href="/agregar-area">
@@ -168,7 +183,6 @@
                 </tbody>
             </table>
         </div>         
-
         <!------------ MARCAS -->
         <div class="tab-pane fade" id="nav-brand" role="tabpanel" aria-labelledby="nav-profile-tab" >
             <a href="/agregar-marca">
@@ -213,6 +227,5 @@
 
     </div>
 </div>
-
 
 <?php require_once "layout/down.php"; ?>

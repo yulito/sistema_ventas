@@ -28,6 +28,12 @@ trait Utils{
     return $obj;
   }
 
+  public function showSubCat(){ 
+    $obj = new SubCategory();
+    $obj = $obj->getAll();
+    return $obj;
+  }
+
   public function showBrand(){ 
     $obj = new Brand();
     $obj = $obj->getAll();

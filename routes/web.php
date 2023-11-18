@@ -6,6 +6,7 @@ use App\Controllers\UserController;
 use App\Controllers\ProductController;
 use App\Controllers\AreaController;
 use App\Controllers\CategoryController; 
+use App\Controllers\SubcategoryController; 
 use App\Controllers\BrandController;
 
 // ---- todas las rutas
@@ -22,7 +23,10 @@ Route::post('/editar-usuario', [UserController::class, 'edit']);
 Route::get('/gestion-productos', [ProductController::class, 'index']);
 
 //subcategoria
-
+Route::get('/agregar-subcategoria', [SubcategoryController::class, 'index']);
+Route::post('/agregar-subcategoria', [SubcategoryController::class, 'store']);
+Route::get('/editar-subcategoria/:id', [SubcategoryController::class, 'showEdit']);
+Route::post('/editar-subcategoria', [SubcategoryController::class, 'edit']);
 //categoria
 Route::get('/agregar-categoria', [CategoryController::class, 'index']);
 Route::post('/agregar-categoria', [CategoryController::class, 'store']);
@@ -33,7 +37,6 @@ Route::get('/agregar-marca', [BrandController::class, 'index']);
 Route::post('/agregar-marca', [BrandController::class, 'store']);
 Route::get('/editar-marca/:id', [BrandController::class, 'showEdit']);
 Route::post('/editar-marca', [BrandController::class, 'edit']);
-
 //area
 Route::get('/agregar-area', [AreaController::class, 'index']);
 Route::post('/agregar-area', [AreaController::class, 'store']);
