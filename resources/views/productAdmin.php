@@ -21,11 +21,53 @@
 
         <!------------ PRODUCTOS -->
         <div class="tab-pane fade show active" id="nav-prod" role="tabpanel" aria-labelledby="nav-home-tab">
-
+        <div class="box-fxd">
             <button class="btn btn-primary" style="margin-bottom: 20px;">
-            Agregar
+                Agregar
             </button>
-        
+
+            <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                    
+                    <form class="d-flex">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Filtrar por Categoría</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>                                                               
+                    </form>
+                    <form class="d-flex">
+                        <select class="form-select" aria-label="Default select example" disabled>
+                            <option selected>Filtrar por Subcategoría</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </form>
+                    <form class="d-flex">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Filtrar por Área</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>                                                               
+                    </form>
+                    <form class="d-flex">
+                        <select class="form-select" aria-label="Default select example" disabled>
+                            <option selected>Filtrar por Marca</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </form>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Buscador" aria-label="Buscador">                    
+                    </form>
+
+                </div>
+            </nav>
+        </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -42,7 +84,7 @@
                     <tr>
                     <th scope="row">1</th>
                     <td>10034404prod</td>
-                    <td>Cemento Melon 20 kg</td>
+                    <td><strong>Cemento Melon 20 kg</strong></td>
                     <td>Melon</td>
                     <td>200</td>
                     <td>02/12/2023</td>
@@ -57,12 +99,12 @@
         <?php require_once "layout/modals/prodmodal.php"; ?>
 
         <!------------ CATEGORIAS -->
-        <div class="tab-pane fade" id="nav-cat" role="tabpanel" aria-labelledby="nav-profile-tab" >
-            <a href="/agregar-categoria">
-                <button class="btn btn-primary" style="margin-bottom: 20px;">
-                Agregar
-                </button>
-            </a>  
+        <div class="tab-pane fade" id="nav-cat" role="tabpanel" aria-labelledby="nav-profile-tab" >            
+                <a href="/agregar-categoria">
+                    <button class="btn btn-primary" style="margin-bottom: 20px;">
+                    Agregar
+                    </button>
+                </a>  
                 <table class="table table-striped">
                     <thead>
                         <tr>
