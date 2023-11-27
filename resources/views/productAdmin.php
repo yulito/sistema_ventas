@@ -22,15 +22,16 @@
         <!------------ PRODUCTOS -->
         <div class="tab-pane fade show active" id="nav-prod" role="tabpanel" aria-labelledby="nav-home-tab">
         <div class="box-fxd">
-            <button class="btn btn-primary" style="margin-bottom: 20px;">
-                Agregar
-            </button>
-
+            <a href="/agregar-productos">
+                <button class="btn btn-primary btn-add-prod" style="margin-bottom: 20px;">
+                    Agregar
+                </button>
+            </a>            
             <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
                     
                     <form class="d-flex">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="catProd" aria-label="Default select example">
                             <option selected>Filtrar por Categoría</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -38,7 +39,7 @@
                         </select>                                                               
                     </form>
                     <form class="d-flex">
-                        <select class="form-select" aria-label="Default select example" disabled>
+                        <select class="form-select" name="subProd" aria-label="Default select example" disabled>
                             <option selected>Filtrar por Subcategoría</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -46,7 +47,7 @@
                         </select>
                     </form>
                     <form class="d-flex">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="areaProd" aria-label="Default select example">
                             <option selected>Filtrar por Área</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -54,7 +55,7 @@
                         </select>                                                               
                     </form>
                     <form class="d-flex">
-                        <select class="form-select" aria-label="Default select example" disabled>
+                        <select class="form-select" name="brandProd" aria-label="Default select example" disabled>
                             <option selected>Filtrar por Marca</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -62,7 +63,7 @@
                         </select>
                     </form>
                     <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Buscador" aria-label="Buscador">                    
+                        <input class="form-control me-2" type="search" name="searchProd" placeholder="Buscador" aria-label="Buscador">                    
                     </form>
 
                 </div>
@@ -89,8 +90,8 @@
                     <td>200</td>
                     <td>02/12/2023</td>
                     <td>
-                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#prodModal">Detalle</button>   
-                        <button class="btn btn-warning">Editar</button>                        
+                        <button class="btn btn-info btn-see-prod" data-bs-toggle="modal" data-bs-target="#prodModal">Detalle</button>   
+                        <button class="btn btn-warning btn-edit-prod">Editar</button>                        
                     </td>                    
                     </tr>                    
                 </tbody>

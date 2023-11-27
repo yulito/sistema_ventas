@@ -71,4 +71,20 @@ class SubcategoryController extends Controller{
         }
         echo json_encode($msg['msg']);
     }
+
+    public function getOneType($id){
+        $this->headJson();
+
+        $obj = new SubCategory();
+        $result = $obj->getAll((int)$id);     
+        if($result->num_rows > 0){
+            while($data = $result->fetch_assoc()){
+                $dt[] = $data;
+            }
+            echo json_encode($dt);
+        }else{
+            echo json_encode(['msg'=>Msg::EMPTY_SUB]);
+        }    
+    }
+
 }

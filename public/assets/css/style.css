@@ -65,7 +65,11 @@ body{
     overflow-y: auto !important;
     overflow-x: hidden !important;
 } */
-
+.scrollForm{
+    height: 400px;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
 table{ display: block; width: auto !important;}
 
 table {    
@@ -78,8 +82,6 @@ thead {
     position: sticky;
     top: 0;
 }
-
-
 .sidebar{
     grid-area: sidebar;
     background-color:var(--color1);

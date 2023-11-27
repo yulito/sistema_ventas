@@ -1,3 +1,4 @@
 config/databases.php
 config/db.sql
 config/modelo_sistema_ventas.png
+public/uploads/

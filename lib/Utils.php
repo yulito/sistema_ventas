@@ -30,7 +30,7 @@ trait Utils{
 
   public function showSubCat(){ 
     $obj = new SubCategory();
-    $obj = $obj->getAll();
+    $obj = $obj->getAll(false);
     return $obj;
   }
 

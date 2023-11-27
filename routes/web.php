@@ -21,12 +21,15 @@ Route::get('/editar-usuario/:nombre', [UserController::class, 'viewEdit']);
 Route::post('/editar-usuario', [UserController::class, 'edit']);
 
 Route::get('/gestion-productos', [ProductController::class, 'index']);
+Route::get('/agregar-productos', [ProductController::class, 'showAdd']);
+Route::post('/agregar-productos', [ProductController::class, 'store']);
 
 //subcategoria
 Route::get('/agregar-subcategoria', [SubcategoryController::class, 'index']);
 Route::post('/agregar-subcategoria', [SubcategoryController::class, 'store']);
 Route::get('/editar-subcategoria/:id', [SubcategoryController::class, 'showEdit']);
 Route::post('/editar-subcategoria', [SubcategoryController::class, 'edit']);
+Route::get('/adquirir-sub/:id', [SubcategoryController::class, 'getOneType']);
 //categoria
 Route::get('/agregar-categoria', [CategoryController::class, 'index']);
 Route::post('/agregar-categoria', [CategoryController::class, 'store']);

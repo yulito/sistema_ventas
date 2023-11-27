@@ -23,9 +23,12 @@ class SubCategory extends Model
     }
 
     //---------------------
-    public function getAll(){
+    public function getAll($id){
         $sql = "SELECT id_sub, subcat, id_cat, cat 
                 FROM subcategoria INNER JOIN categoria USING(id_cat)";
+        if($id){
+            $sql .= " WHERE id_cat = '$id'";
+        }
         $obj = $this->connection->query($sql);
         return $obj;
     }
