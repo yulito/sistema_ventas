@@ -101,6 +101,10 @@ thead {
 .sidebar > ul > li:hover{
     background-color: var(--color2) !important;
 }
+.list-modal,.list-modal-item{
+    background-color: var(--blanco) !important;
+    color: var(--negro) !important;
+}
 .textTitle{
     font-style: italic;
     color: var(--color0);

@@ -23,6 +23,10 @@ Route::post('/editar-usuario', [UserController::class, 'edit']);
 Route::get('/gestion-productos', [ProductController::class, 'index']);
 Route::get('/agregar-productos', [ProductController::class, 'showAdd']);
 Route::post('/agregar-productos', [ProductController::class, 'store']);
+Route::get('/listar-productos/:prod', [ProductController::class, 'list']);
+Route::get('/mostrar-producto/:id', [ProductController::class, 'show']);
+Route::get('/editar-producto/:id', [ProductController::class, 'showEdit']);
+Route::post('/editar-producto', [ProductController::class, 'edit']);
 
 //subcategoria
 Route::get('/agregar-subcategoria', [SubcategoryController::class, 'index']);

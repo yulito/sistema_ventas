@@ -11,7 +11,7 @@
                 <input  type="hidden" name="token_" value="<?php echo $this->createTokenCsrf(); ?>">
                     <div class="mb-3 row">       
                         <input type="hidden" class="form-control" id="idbrand" name="idbrand" value="<?= $brand->id_marca?>">                 
-                        <label for="brand" class="row-sm-2 row-form-label">Editar nombre Área</label>
+                        <label for="brand" class="row-sm-2 row-form-label">Editar nombre Marca</label>
                         <div class="col-sm-10">
                         <input type="text" class="form-control" id="brand" name="brand" value="<?= $brand->marca_?>">
                         </div>

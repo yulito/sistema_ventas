@@ -101,4 +101,5 @@
         </div>
     </div>
 
+<script src="/assets/js/productadd.js"></script>
 <?php require_once "layout/down.php"; ?>

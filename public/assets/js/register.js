@@ -44,7 +44,7 @@ window.addEventListener('load',(e)=>{
                 else{ 
                     template.querySelector('.td2').style.color="black" }
             template.querySelector('.td2').textContent = data.nomtipo;
-            template.querySelector('a').href = "/editar-usuario/"+data.nomusuario.replace(" ", "0y0");          
+            template.querySelector('a').href = "/editar-usuario/"+data.nomusuario.replaceAll(" ", "0y0");          
             const clone = template.cloneNode(true)        
             fragment.appendChild(clone)
         })

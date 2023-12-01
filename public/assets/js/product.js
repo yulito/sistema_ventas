@@ -1,118 +1,102 @@
+const tbd = document.getElementById('tbd-prod')
+const template = document.querySelector('#tmp-tbd-prod').content
+const fragment = document.createDocumentFragment() 
+
+//list
+window.addEventListener('load',()=>{    
+    loadProd(false);
+})
+
+//input dinamic filter 
+if(document.getElementById('searchProd') !== null){
+    const search = document.getElementById('searchProd')
+    search.addEventListener('keyup',(e)=>{
+        e.stopPropagation
+        let s = search.value == "" ? false : search.value.replaceAll(" ", "0y0")
+        console.log(s)
+        loadProd(s)
+
+        //clean tbody
+        tbd.innerHTML = ""       
+    })
+}
+//fetch data product
+function loadProd(parameter){
+    fetch('/listar-productos/'+parameter,{
+        method:'get'
+    }).then( response => response.json())
+    .then(list =>{                                
+
+        let i = 1
+        list.forEach(data =>{
+            
+            template.getElementById('count').textContent = i
+            template.getElementById('cod-tb').textContent = data.cod
+            template.getElementById('prod-tb').textContent = data.producto_
+            template.getElementById('brand-tb').textContent = data.marca_
+            template.getElementById('stock-tb').textContent = data.stock
+            template.getElementById('price-tb').textContent = '$ '+data.valor
+            template.getElementById('date-tb').textContent = data.fecactual
+
+            const ditails = template.querySelector('.btn-see-prod')            
+            ditails.value = data.id_prod
+
+            const linkEdit = template.querySelector('#link-edit-prod')           
+            linkEdit.href = '/editar-producto/'+data.id_prod
+
+            const clone = template.cloneNode(true)       
+            fragment.appendChild(clone)
+            i++         
+        })
+        tbd.appendChild(fragment)
+
+        watchProduct()
+
+    }).catch( err => console.log( err ) )
+};
 //watch product
-if(document.querySelector('.btn-see-prod') !== null){    
-    document.querySelector('.btn-see-prod').addEventListener('click',()=>{
-        console.log('detalle')
-    })
-}
-
-if(document.querySelector('#idcategory') !== null){
-    document.querySelector('#idcategory').addEventListener('change',()=>{
-        //traer select y habilitarlo
-        const selectSub = document.querySelector('#idsubcat')
-        selectSub.disabled = false;
-        const valCat = document.querySelector('#idcategory').value
-
-        //limpiar select
-        if(document.querySelector('.op-tmp')){
-            //let option = document.querySelector('.op-tmp')
-            //option.parentNode.removeChild(option);                    
-            while(selectSub.firstChild){
-                selectSub.removeChild(selectSub.firstChild);
-            }
-            //restaurar option disabled
-            const fragment = document.createDocumentFragment() 
-            const option = document.createElement('option');
-            option.disabled = true;
-            option.selected = true;
-            option.textContent = "Seleccionar Subcategoría *";
-            fragment.appendChild(option)
-            selectSub.appendChild(fragment)
-        }
-
-        //obtener valores de select desde bd
-        fetch('/adquirir-sub/'+valCat,{
-            method:'get'
-        }).then(response => response.json())
-        .then(list =>{
-            if(list.msg){ 
-                //crear mensaje de subcategoria
-                let msgSelect = document.querySelector('.msgText')
-                let frag = document.createDocumentFragment()
-                let h6 = document.createElement('h6')
-                h6.setAttribute("class", "text-center");
-                h6.style.color="var(--color10)";
-                h6.textContent = list.msg
-                frag.append(h6)
-                msgSelect.prepend(frag)
-                //duracion de msg
-                setTimeout(() => {
-                    msgSelect.removeChild(msgSelect.firstElementChild)  
-                    }, 8000);
-            }
-            else{
-                //creando el listado de opciones
-                list.forEach(data =>{
-                    const fragment = document.createDocumentFragment() 
-                    const op = document.createElement('option');
-                    op.setAttribute('value', data.id_sub);
-                    op.setAttribute('class','op-tmp')
-                    op.innerHTML = data.subcat;
-                    const clone = op.cloneNode(true)
-                    fragment.appendChild(clone)
-                    selectSub.appendChild(fragment)
-                })
-            }
-
-        }).catch( err => console.log(err))
-    })
-}
-
-if(document.querySelector('.btn-add-prod') !== null){    
-    document.querySelector('.btn-add-prod').addEventListener('click',()=>{
-        const formProd = document.querySelector('#formProd')
-
-        const data = new FormData(formProd)
-
-        fetch('/agregar-productos',{
-            method:'post',
-            body:data
-        }).then(response => response.json())
-        .then(msg =>{
-            console.log(msg)
-            let frag = document.createDocumentFragment()
-            let h6 = document.createElement('h6')
-            h6.setAttribute("class", "text-center");
-            h6.textContent = ""
-
-            if(msg.field){ 
-                h6.style.color="var(--color10)";
-                h6.textContent = msg.field
-                frag.appendChild(h6)
-            }
-            if(msg.cod_exist){ 
-                h6.style.color="var(--color10)";
-                h6.textContent = msg.cod_exist
-                frag.appendChild(h6)
-             }
-            if(msg.name_exist){ 
-                h6.style.color="var(--color10)";
-                h6.textContent = msg.name_exist
-                frag.appendChild(h6)
-             }            
-            if(msg.success){ 
-                h6.style.color="var(--color11)";
-                h6.textContent = msg.success
-                frag.append(h6)
-
-                formProd.reset()
-             }
-             formProd.prepend(frag)
-
-            //duracion de msg
-            setTimeout(() => {
-                formProd.removeChild(formProd.firstElementChild)  
-            }, 8000);
-
-        }).catch(err => console.log(err))
-    })
+function watchProduct(){ 
+    const btnWatch = document.querySelectorAll('.btn-see-prod')
+    for(let i = 0; i < btnWatch.length; i++){
+        btnWatch[i].addEventListener('click',()=>{
+            //console.log(btnWatch[i].value)        
+            const foto       = document.getElementById('foto-prod')
+            const product    = document.getElementById('name-product')
+            const dateUpdate = document.getElementById('date-updated')
+            const cod        = document.getElementById('cod')
+            const descript   = document.getElementById('description')
+            const measure    = document.getElementById('measure')
+            const stock      = document.getElementById('stock')
+            const price      = document.getElementById('price')
+            const discount   = document.getElementById('discount')
+            const brand      = document.getElementById('brand')
+            const sub        = document.getElementById('sub')
+            const area       = document.getElementById('area')
+    
+            fetch('/mostrar-producto/'+btnWatch[i].value,{
+                method:'get'
+            }).then( response => response.json())
+            .then(data =>{
+                //console.log(data)
+                if(data.foto == null || data.foto == ""){
+                    foto.src = '/assets/images/interrogacion.png'
+                }else{
+                    foto.src = '/uploads/'+data.foto
+                }
+                product.textContent= data.producto_
+                dateUpdate.textContent= data.fecactual
+                cod.textContent= data.cod
+                descript.textContent= data.proddescrip
+                measure.textContent= data.umedida
+                stock.textContent= data.stock
+                price.textContent= '$ '+data.valor
+                discount.textContent= data.desc_x_prod
+                brand.textContent= data.marca_
+                sub.textContent= data.subcat
+                area.textContent= data.area_ 
+    
+            }).catch( err => console.log( err ) )
+        })
+    }
+    
 }

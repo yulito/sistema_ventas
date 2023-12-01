@@ -21,79 +21,55 @@
 
         <!------------ PRODUCTOS -->
         <div class="tab-pane fade show active" id="nav-prod" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div class="box-fxd">
-            <a href="/agregar-productos">
-                <button class="btn btn-primary btn-add-prod" style="margin-bottom: 20px;">
-                    Agregar
-                </button>
-            </a>            
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                    
-                    <form class="d-flex">
-                        <select class="form-select" name="catProd" aria-label="Default select example">
-                            <option selected>Filtrar por Categoría</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>                                                               
-                    </form>
-                    <form class="d-flex">
-                        <select class="form-select" name="subProd" aria-label="Default select example" disabled>
-                            <option selected>Filtrar por Subcategoría</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </form>
-                    <form class="d-flex">
-                        <select class="form-select" name="areaProd" aria-label="Default select example">
-                            <option selected>Filtrar por Área</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>                                                               
-                    </form>
-                    <form class="d-flex">
-                        <select class="form-select" name="brandProd" aria-label="Default select example" disabled>
-                            <option selected>Filtrar por Marca</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </form>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" name="searchProd" placeholder="Buscador" aria-label="Buscador">                    
-                    </form>
-
-                </div>
-            </nav>
-        </div>
+            <div class="box-fxd">
+                <a href="/agregar-productos">
+                    <button class="btn btn-primary btn-add-prod" style="margin-bottom: 20px;">
+                        Agregar
+                    </button>
+                </a>            
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                        <!-- buscador -->
+                        <div class="d-flex">
+                            <input class="form-control me-2" type="search" name="searchProd" id="searchProd" placeholder="Buscador" aria-label="Buscador">                    
+                        </div>
+                        <!------------->
+                    </div>
+                </nav>
+            </div>
             <table class="table table-striped">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">COD.</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">modificación</th>
-                    <th scope="col">Detalle | Editar</th>
+                        <th scope="col">#</th>
+                        <th scope="col">COD.</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">modificación</th>
+                        <th scope="col">Detalle | Editar</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>10034404prod</td>
-                    <td><strong>Cemento Melon 20 kg</strong></td>
-                    <td>Melon</td>
-                    <td>200</td>
-                    <td>02/12/2023</td>
-                    <td>
-                        <button class="btn btn-info btn-see-prod" data-bs-toggle="modal" data-bs-target="#prodModal">Detalle</button>   
-                        <button class="btn btn-warning btn-edit-prod">Editar</button>                        
-                    </td>                    
-                    </tr>                    
+                <tbody id="tbd-prod">
+                    <template id="tmp-tbd-prod">
+                        <tr>
+                            <th scope="row" id="count"> </th>
+                            <td id="cod-tb"> </td>
+                            <td><strong id="prod-tb"> </strong></td>
+                            <td id="brand-tb"> </td>
+                            <td id="stock-tb"> </td>
+                            <td id="price-tb"> </td>
+                            <td id="date-tb"> </td>
+                            <td>
+                                <button class="btn btn-info btn-see-prod" data-bs-toggle="modal" data-bs-target="#prodModal" >Detalle</button>   
+
+                                <a id="link-edit-prod">
+                                    <button class="btn btn-warning btn-edit-prod" >Editar</button>
+                                </a>
+
+                            </td>                    
+                        </tr> 
+                    </template>                   
                 </tbody>
             </table>
         </div>
@@ -270,5 +246,7 @@
 
     </div>
 </div>
+
+<script src="/assets/js/product.js"></script>
 
 <?php require_once "layout/down.php"; ?>

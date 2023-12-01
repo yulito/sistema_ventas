@@ -89,6 +89,37 @@ class Product extends Model
     }
 
     //Public functions
+    public function getAll($param){
+        $sql = "SELECT p.id_prod,p.cod, p.feccreacion, p.fecactual, p.producto_, p.proddescrip, p.foto, p.umedida,
+                p.stock, p.valor, p.desc_x_prod, m.marca_, s.subcat, a.area_,c.cat
+                FROM producto p LEFT OUTER JOIN marca m USING(id_marca)
+                            LEFT OUTER JOIN subcategoria s USING(id_sub)
+                            LEFT OUTER JOIN area a USING(id_area)
+                            LEFT OUTER JOIN categoria c USING(id_cat)";
+        if(!empty($param)){
+            $sql .= " WHERE cod LIKE '%$param%' OR producto_ LIKE '%$param%' OR subcat LIKE '%$param%' OR marca_ LIKE '%$param%' OR area_ LIKE '%$param%'";
+        }
+        $user = $this->connection->query($sql);
+        if($user->num_rows > 0){
+            while($data = $user->fetch_assoc()){
+                $obj[] = $data;
+            }
+            return $obj;
+        }else{
+            return false;
+        }
+    }
+    public function getOne($id){
+        $sql = "SELECT p.id_prod,p.cod, p.feccreacion, p.fecactual, p.producto_, p.proddescrip, p.foto, p.umedida,
+                p.stock, p.valor, p.desc_x_prod, m.marca_, s.subcat, a.area_,c.cat, p.id_sub, p.id_marca, p.id_area
+                FROM producto p LEFT OUTER JOIN marca m USING(id_marca)
+                            LEFT OUTER JOIN subcategoria s USING(id_sub)
+                            LEFT OUTER JOIN area a USING(id_area)
+                            LEFT OUTER JOIN categoria c USING(id_cat)
+                            WHERE id_prod = '$id'";
+        $obj = $this->connection->query($sql);
+        return $obj->fetch_assoc();
+    }
     public function save(){
         $sql = "INSERT INTO producto (cod, producto_, proddescrip, foto, umedida, stock, valor, desc_x_prod, id_marca, id_sub, id_area) 
                 VALUES ('{$this->getCod()}','{$this->getProd()}','{$this->getDescription()}','{$this->getPhoto()}','{$this->getMeasure()}','{$this->getStock()}','{$this->getPrice()}','{$this->getDiscount()}','{$this->getBrand()}','{$this->getSubcategory()}','{$this->getArea()}')";
@@ -105,5 +136,24 @@ class Product extends Model
         $result = $this->connection->query($sql);
         return $result->fetch_object();
     }
-
+    public function update($id){
+        $sql = "UPDATE producto SET 
+                cod = '{$this->getCod()}',
+                fecactual = NOW(),
+                producto_ = '{$this->getProd()}',
+                proddescrip = '{$this->getDescription()}', ";
+        if(!empty($this->getPhoto())){
+            $sql .= "foto = '{$this->getPhoto()}', ";
+        }
+        $sql .= "umedida = '{$this->getMeasure()}',
+                 stock = '{$this->getStock()}',
+                 valor = '{$this->getPrice()}',
+                 desc_x_prod = '{$this->getDiscount()}',
+                 id_marca = '{$this->getBrand()}',
+                 id_sub = '{$this->getSubcategory()}',
+                 id_area = '{$this->getArea()}'
+                 WHERE id_prod = '$id'";
+        $result = $this->connection->query($sql);
+        return $result;
+    }
 }
