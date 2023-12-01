@@ -32,8 +32,8 @@ function loadProd(parameter){
             
             template.getElementById('count').textContent = i
             template.getElementById('cod-tb').textContent = data.cod
-            template.getElementById('prod-tb').textContent = data.producto_
-            template.getElementById('brand-tb').textContent = data.marca_
+            template.getElementById('prod-tb').textContent = data.producto_.substring(0, 42)+'...'
+            template.getElementById('brand-tb').textContent = data.marca_.substring(0, 10)+'...'
             template.getElementById('stock-tb').textContent = data.stock
             template.getElementById('price-tb').textContent = '$ '+data.valor
             template.getElementById('date-tb').textContent = data.fecactual

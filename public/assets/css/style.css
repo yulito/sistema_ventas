@@ -60,11 +60,6 @@ body{
     align-items: center;
     gap: 20px;
 }
-/* .tab-pane{  
-    height: 400px;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-} */
 .scrollForm{
     height: 400px;
     overflow-y: auto !important;

@@ -24,7 +24,7 @@
             <div class="box-fxd">
                 <a href="/agregar-productos">
                     <button class="btn btn-primary btn-add-prod" style="margin-bottom: 20px;">
-                        Agregar
+                        <?php require "layout/icons/btnadd.php" ?>
                     </button>
                 </a>            
                 <nav class="navbar navbar-light bg-light">
@@ -46,7 +46,7 @@
                         <th scope="col">Marca</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Valor</th>
-                        <th scope="col">modificación</th>
+                        <th scope="col">Modificación</th>
                         <th scope="col">Detalle | Editar</th>
                     </tr>
                 </thead>
@@ -61,10 +61,14 @@
                             <td id="price-tb"> </td>
                             <td id="date-tb"> </td>
                             <td>
-                                <button class="btn btn-info btn-see-prod" data-bs-toggle="modal" data-bs-target="#prodModal" >Detalle</button>   
+                                <button class="btn btn-info btn-see-prod" data-bs-toggle="modal" data-bs-target="#prodModal" >
+                                    <?php require "layout/icons/btnlook.php" ?>
+                                </button>   
 
                                 <a id="link-edit-prod">
-                                    <button class="btn btn-warning btn-edit-prod" >Editar</button>
+                                    <button class="btn btn-warning btn-edit-prod" >
+                                        <?php require "layout/icons/btnedit.php" ?>
+                                    </button>
                                 </a>
 
                             </td>                    
@@ -79,7 +83,7 @@
         <div class="tab-pane fade" id="nav-cat" role="tabpanel" aria-labelledby="nav-profile-tab" >            
                 <a href="/agregar-categoria">
                     <button class="btn btn-primary" style="margin-bottom: 20px;">
-                    Agregar
+                        <?php require "layout/icons/btnadd.php" ?>
                     </button>
                 </a>  
                 <table class="table table-striped">
@@ -100,7 +104,9 @@
                                     <td><?= $cat->cat;?></td>
                                     <td>
                                         <a href="/editar-categoria/<?=$cat->id_cat?>">
-                                            <button class="btn btn-warning" >Editar</button>  
+                                            <button class="btn btn-warning" >
+                                                <?php require "layout/icons/btnedit.php" ?>
+                                            </button>  
                                         </a>                      
                                     </td>                    
                                 </tr>
@@ -121,7 +127,7 @@
         <div class="tab-pane fade" id="nav-sub" role="tabpanel" aria-labelledby="nav-profile-tab" >
             <a href="/agregar-subcategoria">
                 <button class="btn btn-primary" style="margin-bottom: 20px;">
-                Agregar
+                    <?php require "layout/icons/btnadd.php" ?>
                 </button>
             </a>            
             
@@ -145,7 +151,9 @@
                                 <td><?= $sub->cat;?></td>
                                 <td>
                                     <a href="/editar-subcategoria/<?=$sub->id_sub?>">
-                                        <button class="btn btn-warning" >Editar</button>  
+                                        <button class="btn btn-warning" >
+                                            <?php require "layout/icons/btnedit.php" ?>
+                                        </button>  
                                     </a>                      
                                 </td>                    
                             </tr>
@@ -165,7 +173,7 @@
         <div class="tab-pane fade" id="nav-area" role="tabpanel" aria-labelledby="nav-profile-tab" >
             <a href="/agregar-area">
                 <button class="btn btn-primary" style="margin-bottom: 20px;">
-                Agregar
+                    <?php require "layout/icons/btnadd.php" ?>
                 </button>
             </a>            
             <table class="table table-striped">
@@ -186,7 +194,9 @@
                         <td><?= $area->area_;?></td>
                         <td>
                             <a href="/editar-area/<?=$area->id_area?>">
-                                <button class="btn btn-warning" >Editar</button>  
+                                <button class="btn btn-warning" >
+                                    <?php require "layout/icons/btnedit.php" ?>
+                                </button>  
                             </a>                      
                         </td>                    
                     </tr>
@@ -206,7 +216,7 @@
         <div class="tab-pane fade" id="nav-brand" role="tabpanel" aria-labelledby="nav-profile-tab" >
             <a href="/agregar-marca">
                 <button class="btn btn-primary" style="margin-bottom: 20px;">
-                Agregar
+                    <?php require "layout/icons/btnadd.php" ?>
                 </button>
             </a>            
             <table class="table table-striped">
@@ -227,7 +237,9 @@
                             <td><?= $brand->marca_;?></td>
                             <td>
                                 <a href="/editar-marca/<?=$brand->id_marca?>">
-                                    <button class="btn btn-warning" >Editar</button>  
+                                    <button class="btn btn-warning" >
+                                        <?php require "layout/icons/btnedit.php" ?>
+                                    </button>  
                                 </a>                      
                             </td>                    
                         </tr>
