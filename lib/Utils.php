@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Location;
 
 trait Utils{
 
@@ -14,6 +15,12 @@ trait Utils{
   $obj= new TypeUser();
   $obj= $obj->getAll();
   return $obj;
+  }
+
+  public function showLocation(){ 
+    $obj = new Location();
+    $obj = $obj->getAll();
+    return $obj;
   }
 
   public function showArea(){

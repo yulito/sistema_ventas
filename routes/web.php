@@ -8,6 +8,7 @@ use App\Controllers\AreaController;
 use App\Controllers\CategoryController; 
 use App\Controllers\SubcategoryController; 
 use App\Controllers\BrandController;
+use App\Controllers\LocationController;
 
 // ---- todas las rutas
 Route::get('/', [SessionController::class, 'index']);
@@ -19,7 +20,7 @@ Route::post('/gestion-usuario', [UserController::class, 'store']);
 Route::get('/usuarios', [UserController::class, 'show']);
 Route::get('/editar-usuario/:nombre', [UserController::class, 'viewEdit']);
 Route::post('/editar-usuario', [UserController::class, 'edit']);
-
+//Productos
 Route::get('/gestion-productos', [ProductController::class, 'index']);
 Route::get('/agregar-productos', [ProductController::class, 'showAdd']);
 Route::post('/agregar-productos', [ProductController::class, 'store']);
@@ -49,6 +50,14 @@ Route::get('/agregar-area', [AreaController::class, 'index']);
 Route::post('/agregar-area', [AreaController::class, 'store']);
 Route::get('/editar-area/:id', [AreaController::class, 'showEdit']);
 Route::post('/editar-area', [AreaController::class, 'edit']);
+
+//---- localidades/comunas   
+Route::get('/gestion-ubicacion', [LocationController::class, 'index']);
+Route::get('/agregar-locacion', [LocationController::class, 'showAdd']);
+Route::post('/agregar-locacion', [LocationController::class, 'store']);
+Route::get('/editar-locacion/:id', [LocationController::class, 'showEdit']);
+Route::post('/editar-locacion', [LocationController::class, 'edit']);
+
 
 // --------------------
 Lib\Route::dispatch();

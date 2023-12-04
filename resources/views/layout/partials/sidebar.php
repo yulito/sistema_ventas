@@ -25,6 +25,7 @@
         
         <!------ MENUS (debemos de poner una condicion para cambiar de menu segun usuario)-------------------------------------------------->
         <?php require_once "menuadmin.php"; ?>
+        
         <!-- require_once "partials/menu.user.php"; -->
 
         <li class="list-group-item ">
