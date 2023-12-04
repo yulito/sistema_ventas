@@ -8,6 +8,8 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\Location;
+use App\Models\Office;
+
 
 trait Utils{
 
@@ -47,4 +49,9 @@ trait Utils{
     return $obj;
   }
     
+  public function showOffice(){
+    $obj = new Office();
+    $obj = $obj->verify();
+    return $obj;
+  }
 }

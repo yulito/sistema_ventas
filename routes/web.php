@@ -9,6 +9,7 @@ use App\Controllers\CategoryController;
 use App\Controllers\SubcategoryController; 
 use App\Controllers\BrandController;
 use App\Controllers\LocationController;
+use App\Controllers\OfficeController;
 
 // ---- todas las rutas
 Route::get('/', [SessionController::class, 'index']);
@@ -57,7 +58,8 @@ Route::get('/agregar-locacion', [LocationController::class, 'showAdd']);
 Route::post('/agregar-locacion', [LocationController::class, 'store']);
 Route::get('/editar-locacion/:id', [LocationController::class, 'showEdit']);
 Route::post('/editar-locacion', [LocationController::class, 'edit']);
-
+//---- sucursal
+Route::post('/gestion-sucursal', [OfficeController::class, 'store']);
 
 // --------------------
 Lib\Route::dispatch();

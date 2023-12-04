@@ -14,7 +14,7 @@
     </nav>
     <br>
     <div class="tab-content" id="nav-tabContent" style="max-width: 500px;">
-        <!------------ Lista de usuarios -->
+        <!------------ Lista de locaciones-->
         <div class="tab-pane fade show active" id="nav-location" role="tabpanel" aria-labelledby="nav-home-tab">
             <a href="/agregar-locacion">
                 <button class="btn btn-primary" style="margin-bottom: 20px;">
@@ -57,34 +57,50 @@
                     </tbody>
                 </table>
         </div>
-        <!------------ Formulario de usuario -->        
+        <!------------ Formulario de sucursal -->        
         <div class="tab-pane fade" id="nav-office" role="tabpanel" aria-labelledby="nav-profile-tab" >
+            <?php $office = $this->showOffice();?>
             
             <form id="formBrachOffice">
             <input  type="hidden" name="token_" value="<?php echo $this->createTokenCsrf(); ?>">
                 <div class="mb-3 row">
                     <label for="office" class="col-sm-2 col-form-label">Sucursal</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" id="office" name="office">
+                        <?php if($office): ?>
+                            <span><?php require "layout/icons/btnedit.php" ?></span>
+                            <input type="text" class="form-control" id="office" name="office" value="<?= $office->sucursal_?>">                            
+                        <?php else: ?>
+                            <input type="text" class="form-control" id="office" name="office">
+                        <?php endif; ?>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="idaddress" class="col-sm-2 col-form-label">Dirección</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="idaddress" name="idaddress">
+                    <?php if($office): ?>
+                            <span><?php require "layout/icons/btnedit.php" ?></span>
+                            <input type="text" class="form-control" id="idaddress" name="idaddress" value="<?= $office->direccion_sucursal?>">                            
+                        <?php else: ?>
+                            <input type="text" class="form-control" id="idaddress" name="idaddress">
+                        <?php endif; ?>                        
                     </div>
                 </div>
                 
-                <select class="form-select" name="location" id="location" aria-label="Default select example">
-                    <option selected disabled>Selecciona la región</option>
+                <select class="form-select" name="loc" id="loc" aria-label="Default select example">
+                    <?php if($office): ?> 
+                            <option value=<?=$office->id_comuna?> selected><?=$office->comuna_ ?></option>
+                        <?php else: ?>
+                            <option selected disabled>Selecciona la región</option>
+                        <?php endif; ?>                        
+                    </div>                    
 
-                    <?php $objs = $this->showTypeUser(); ?>
-                    <?php while($typeUser = $objs->fetch_object()): ?>                    
-                        <option value=<?=$typeUser->id_tipo ?>>
-                            <?= $typeUser->nomtipo ?>
+                    <?php $objLoc = $this->showLocation();  ?>
+                    <?php while($loc = $objLoc->fetch_object()): ?>                    
+                        <option value=<?=$loc->id_comuna ?>>
+                            <?= $loc->comuna_ ?>
                         </option>                    
-                    <?php endwhile; ?>
+                    <?php endwhile; ?>                   
 
                 </select>
                 <br>

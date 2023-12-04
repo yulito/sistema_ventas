@@ -11,6 +11,7 @@ class Msg{
     const PASS_INVALID  = "Contraseña invalida.";
     
     const MSG_SUCCESS   = "Operación realizada correctamente!.";
+    const UPDATE_SUCCESS   = "Actualización realizada correctamente!.";
     const TYPE_INCORRECT   = "Tipo de usuario INCORRECTO.";
     const NAME_EXIST    = "Este nombre ya está registrado.";
     const COD_EXIST     = "Este código ya está en uso. Intente con otro código.";
