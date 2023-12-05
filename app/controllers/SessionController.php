@@ -38,7 +38,11 @@ class SessionController extends Controller{
     }
     public function logout()
     {
-        unset($_SESSION['auth']);
+        //cerrar sesion
+        $obj = new User();
+        $obj->close();
+        
+        unset($_SESSION['auth']);        
         return $this->redirect('/');
     }
 }

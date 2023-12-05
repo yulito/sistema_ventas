@@ -8,8 +8,11 @@ use App\Helpers\Msg;
 class UserController extends Controller{
 
     public function index(){
-        
-        return $this->view('userAdmin');
+        if($_SESSION['auth']){
+            return $this->view('userAdmin');
+        }else{
+            return $this->redirect('/');
+        }                 
     }
 
     public function store(){
@@ -66,15 +69,19 @@ class UserController extends Controller{
     }
 
     public function viewEdit($name){  
-        $name = str_replace("0y0", " ", $name);
-        $obj = new User();
-        $user = $obj->validateName($name);
-        if($user){
-            return $this->view('editUser', compact("user"));
+        if(isset($_SESSION['auth'])){
+            $name = str_replace("0y0", " ", $name);
+            $obj = new User();
+            $user = $obj->validateName($name);
+            if($user){
+                return $this->view('editUser', compact("user"));
+            }else{
+                $msg = Msg::ERROR_404;
+                return $this->view('error/page404', compact("msg"));
+            }
         }else{
-            $msg = Msg::ERROR_404;
-            return $this->view('error/page404', compact("msg"));
-        }        
+            return $this->redirect('/');
+        }                
     }
 
     public function edit(){

@@ -8,8 +8,11 @@ use App\Helpers\Msg;
 class BrandController extends Controller{
 
     public function index(){
-        
-        return $this->view('addbrand');
+        if($_SESSION['auth']){
+            return $this->view('addbrand');
+        }else{
+            return $this->redirect('/');
+        }         
     }
 
     public function store(){
@@ -38,10 +41,18 @@ class BrandController extends Controller{
     }
 
     public function showEdit($id){
-
-        $obj = new Brand();
-        $brand = $obj->getOne($id);
-        return $this->view('editbrand', compact("brand"));
+        if($_SESSION['auth']){
+            $obj = new Brand();
+            $brand = $obj->getOne($id);
+            if($brand){
+                return $this->view('editbrand', compact("brand"));
+            }else{
+                $msg = Msg::ERROR_404;
+                return $this->view('error/page404', compact("msg"));
+            }        
+        }else{
+            return $this->redirect('/');
+        }                 
     }
 
     public function edit(){

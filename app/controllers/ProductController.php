@@ -8,8 +8,11 @@ use App\Helpers\Msg;
 class ProductController extends Controller{
 
     public function index(){
-
-        return $this->view('productAdmin');
+        if($_SESSION['auth']){
+            return $this->view('productAdmin');
+        }else{
+            return $this->redirect('/');
+        }        
     }
     public function list($prod){     
         $p = null;
@@ -34,8 +37,11 @@ class ProductController extends Controller{
         echo json_encode($result); 
     }
     public function showAdd(){
-
-        return $this->view('addproduct');
+        if($_SESSION['auth']){
+            return $this->view('addproduct');
+        }else{
+            return $this->redirect('/');
+        }        
     }
     public function store(){        
         $this->headJson();
@@ -107,9 +113,18 @@ class ProductController extends Controller{
         echo json_encode($msg['msg']);
     }  
     public function showEdit($id){
-        $obj = new Product();
-        $prod = $obj->getOne($id);
-        return $this->view('editprod', compact('prod'));
+        if($_SESSION['auth']){
+            $obj = new Product();
+            $prod = $obj->getOne($id);
+            if($prod){
+                return $this->view('editprod', compact('prod'));
+            }else{
+                $msg = Msg::ERROR_404;
+                return $this->view('error/page404', compact("msg"));
+            }        
+        }else{
+            return $this->redirect('/');
+        } 
     }  
     public function edit(){
         $this->headJson();

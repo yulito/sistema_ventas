@@ -77,9 +77,18 @@ class User extends Model
             $verify = password_verify($password, $obj->clave);
             if($verify){
 				$result = $obj;
+                $sql = "INSERT INTO sesion (id_usuario, id_accion) 
+                        VALUES('$obj->id_usuario',1)";
+                $this->connection->query($sql);
 			}
         }
         return $result;	        
+    }
+
+    public function close(){
+        $sql = "INSERT INTO sesion (id_usuario, id_accion) 
+                VALUES('{$_SESSION['auth']->id_usuario}',2)";
+        $this->connection->query($sql);
     }
 
     public function update($id, $p){

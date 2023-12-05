@@ -8,11 +8,18 @@ use App\Helpers\Msg;
 class LocationController extends Controller{
 
     public function index(){
-        
-        return $this->view('location');
+        if($_SESSION['auth']){
+            return $this->view('location');
+        }else{
+            return $this->redirect('/');
+        }
     }
-    public function showAdd(){
-        return $this->view('addlocation');
+    public function showAdd(){        
+        if($_SESSION['auth']){
+            return $this->view('addlocation');
+        }else{
+            return $this->redirect('/');
+        } 
     }
     public function store(){        
         $this->headJson();
@@ -38,10 +45,19 @@ class LocationController extends Controller{
         echo json_encode($msg['msg']);
 
     }
-    public function showEdit($id){        
-        $obj = new Location();
-        $location = $obj->getOne($id);
-        return $this->view('editlocation', compact("location"));
+    public function showEdit($id){ 
+        if($_SESSION['auth']){
+            $obj = new Location();
+            $location = $obj->getOne($id);
+            if($location){
+                return $this->view('editlocation', compact("location"));
+            }else{
+                $msg = Msg::ERROR_404;
+                return $this->view('error/page404', compact("msg"));
+            }        
+        }else{
+            return $this->redirect('/');
+        }                   
     }
     public function edit(){
         $this->headJson();

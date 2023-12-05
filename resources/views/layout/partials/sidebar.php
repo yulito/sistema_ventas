@@ -2,7 +2,9 @@
     <img src="/assets/images/logo.png" style="width:180px;height:180px;border-radius:50%;" alt="logo">
     
     <div>
-        <h5 style="font-style: italic;"><strong>Nombre de Usuario</strong></h5>
+        <?php if(isset($_SESSION['auth'])):?>
+            <h5 style="font-style: italic;color:orangered;"><strong><?= $_SESSION['auth']->nomusuario; ?></strong></h5>
+        <?php endif; ?>
         <hr>
     </div>
     <div>

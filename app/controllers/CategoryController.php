@@ -8,8 +8,11 @@ use App\Helpers\Msg;
 class CategoryController extends Controller{
 
     public function index(){
-        
-        return $this->view('addcat');
+        if($_SESSION['auth']){
+            return $this->view('addcat');
+        }else{
+            return $this->redirect('/');
+        }        
     }
 
     public function store(){
@@ -38,10 +41,18 @@ class CategoryController extends Controller{
     }
 
     public function showEdit($id){
-
-        $obj = new Category();
-        $cat = $obj->getOne($id);
-        return $this->view('editcat', compact("cat"));
+        if($_SESSION['auth']){
+            $obj = new Category();
+            $cat = $obj->getOne($id);            
+            if($cat){
+                return $this->view('editcat', compact("cat"));
+            }else{
+                $msg = Msg::ERROR_404;
+                return $this->view('error/page404', compact("msg"));
+            } 
+        }else{
+            return $this->redirect('/');
+        }
     }
 
     public function edit(){

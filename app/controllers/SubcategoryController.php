@@ -8,8 +8,11 @@ use App\Helpers\Msg;
 class SubcategoryController extends Controller{
 
     public function index(){
-        
-        return $this->view('addsub');
+        if($_SESSION['auth']){
+            return $this->view('addsub');
+        }else{
+            return $this->redirect('/');
+        }        
     }
 
     public function store(){
@@ -39,11 +42,19 @@ class SubcategoryController extends Controller{
         
     }
 
-    public function showEdit($id){
-
-        $obj = new SubCategory();
-        $sub = $obj->getOne($id);
-        return $this->view('editsub', compact("sub"));
+    public function showEdit($id){    
+        if($_SESSION['auth']){
+            $obj = new SubCategory();
+            $sub = $obj->getOne($id);
+            if($sub){
+                return $this->view('editsub', compact("sub"));
+            }else{
+                $msg = Msg::ERROR_404;
+                return $this->view('error/page404', compact("msg"));
+            }        
+        }else{
+            return $this->redirect('/');
+        } 
     }
 
     public function edit(){
