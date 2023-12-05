@@ -16,7 +16,7 @@ body{
 .container-sm{
     border: 1px solid gray;
     border-radius: 8px;
-    max-width: 600px;
+    max-width: 600px !important;
     background-color: #dfdfdf;
     box-shadow: 2px 4px 10px #000;
 }

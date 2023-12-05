@@ -13,7 +13,8 @@ use App\Controllers\OfficeController;
 
 // ---- todas las rutas
 Route::get('/', [SessionController::class, 'index']);
-Route::post('/', [SessionController::class, 'login']);
+Route::post('/login', [SessionController::class, 'login']);
+Route::get('/logout', [SessionController::class, 'logout']);
 
 // ---- perfil administrador
 Route::get('/gestion-usuario', [UserController::class, 'index']);

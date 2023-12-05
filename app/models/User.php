@@ -62,12 +62,24 @@ class User extends Model
     }
   
     public function validateName($name){
-        $sql = "SELECT id_usuario, nomusuario, id_tipo, nomtipo 
+        $sql = "SELECT id_usuario, nomusuario, clave, id_tipo, nomtipo 
                 FROM usuario INNER JOIN tipo_usuario USING(id_tipo) 
                 WHERE nomusuario = '$name'";
 
         $result = $this->connection->query($sql);
         return $result->fetch_object();
+    }
+
+    public function validatePassword($password,$name){        
+        $obj = $this->validateName($name);
+        $result = false;
+        if($obj){
+            $verify = password_verify($password, $obj->clave);
+            if($verify){
+				$result = $obj;
+			}
+        }
+        return $result;	        
     }
 
     public function update($id, $p){
