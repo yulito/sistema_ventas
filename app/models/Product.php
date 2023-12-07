@@ -98,6 +98,8 @@ class Product extends Model
                             LEFT OUTER JOIN categoria c USING(id_cat)";
         if(!empty($param)){
             $sql .= " WHERE cod LIKE '%$param%' OR producto_ LIKE '%$param%' OR subcat LIKE '%$param%' OR marca_ LIKE '%$param%' OR area_ LIKE '%$param%'";
+        }else{
+            $sql .= "ORDER BY fecactual DESC LIMIT 0,100";
         }
         $user = $this->connection->query($sql);
         if($user->num_rows > 0){

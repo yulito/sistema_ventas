@@ -12,7 +12,7 @@
                 <input  type="hidden" name="token_" value="<?php echo $this->createTokenCsrf(); ?>">
 
                     <div class="mb-3 row">                        
-                        <label for="nameCod" class="row-sm-2 row-form-label">Código</label>
+                        <label for="nameCod" class="row-sm-2 row-form-label">Código <span style="color: red;">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="nameCod" name="nameCod" >
                         </div>

@@ -47,7 +47,7 @@ class ProductController extends Controller{
         $this->headJson();
         $this->validateToken($_POST['token_']);  
         //recibir post
-        $cod    = !empty($_POST['nameCod']) ? $_POST['nameCod'] : null; //opcional
+        $cod    = !empty($_POST['nameCod']) ? $_POST['nameCod'] : null; 
         $prod   = !empty($_POST['nameProd']) ? $_POST['nameProd'] : null;
         $text   = !empty($_POST['nameText']) ? $_POST['nameText'] : null; //opcional
         $measure = isset($_POST['idmeasure']) ? (int)$_POST['idmeasure'] : null;
@@ -59,7 +59,7 @@ class ProductController extends Controller{
         $photo  = !empty($_FILES['idFile']) ? $_FILES['idFile'] : null; //opcional
         //validaciones
         $msg['msg'] = [];
-        if($prod == null || $measure == null || $price == null || $sub == null || $area == null || $brand == null){
+        if($cod == null || $prod == null || $measure == null || $price == null || $sub == null || $area == null || $brand == null){
             $msg['msg']['field'] = Msg::EMPTY_FIELD;
         }
         $measureResult = match($measure){
@@ -143,7 +143,7 @@ class ProductController extends Controller{
         $photo  = !empty($_FILES['idFile']) ? $_FILES['idFile'] : null;
         //validaciones
         $msg['msg'] = [];
-        if($prod == null || $measure == null || $price == null || $sub == null || $area == null || $brand == null){
+        if($cod == null || $prod == null || $measure == null || $price == null || $sub == null || $area == null || $brand == null){
             $msg['msg']['field'] = Msg::EMPTY_FIELD;
         }        
         //verificar existencia

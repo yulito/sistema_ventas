@@ -72,7 +72,7 @@ if(document.querySelector('.btn-update-prod') !== null){
             body:data
         }).then(response => response.json())
         .then(msg =>{
-            console.log(msg)
+            const msgError = document.querySelector('.edit-box')
             let frag = document.createDocumentFragment()
             let h6 = document.createElement('h6')
             h6.setAttribute("class", "text-center");
@@ -95,11 +95,11 @@ if(document.querySelector('.btn-update-prod') !== null){
 
                 formProd.reset()
              }
-             formProd.prepend(frag)
+             msgError.prepend(frag)
 
             //duracion de msg
             setTimeout(() => {
-                formProd.removeChild(formProd.firstElementChild)  
+                msgError.removeChild(msgError.firstElementChild)  
             }, 8000);
 
         }).catch(err => console.log(err))

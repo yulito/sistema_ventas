@@ -14,7 +14,7 @@
 
             <div class="mb-3 row">
             <input type="hidden" class="form-control" id="idprod" name="idprod" value="<?= $prod['id_prod']?>">    
-                <label for="nameCod" class="row-sm-2 row-form-label">Código</label>
+                <label for="nameCod" class="row-sm-2 row-form-label">Código <span style="color: red;">*</span></label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="nameCod" name="nameCod" value="<?= $prod['cod']?>">
                 </div>
