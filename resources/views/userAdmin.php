@@ -2,7 +2,7 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
 
 <div class="textTitle">
-    <h2>Gestión de usuarios Vendedores</h2>
+    <h4>Gestión de usuarios Vendedores</h4>
 </div>
 <div>
     <nav>

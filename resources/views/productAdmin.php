@@ -2,7 +2,7 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
 
 <div class="textTitle">
-    <h2>Gestión de Productos</h2>
+    <h4>Gestión de Productos</h4>
 </div>
 
 <div class="box-tab" >
@@ -37,7 +37,7 @@
                     </div>
                 </nav>
             </div>
-            <table class="table table-striped">
+            <table class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -86,11 +86,11 @@
                         <?php require "layout/icons/btnadd.php" ?>
                     </button>
                 </a>  
-                <table class="table table-striped">
+                <table class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Categoría</th>        
+                        <th scope="col" style="width:100%">Categoría</th>        
                         <th scope="col">Editar</th>
                         </tr>
                     </thead>
@@ -131,12 +131,12 @@
                 </button>
             </a>            
             
-            <table class="table table-striped">
+            <table class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Sub-categoría</th>   
-                    <th scope="col">Categoría</th>        
+                    <th scope="col" style="width:40%">Sub-categoría</th>   
+                    <th scope="col"style="width:60%">Categoría</th>        
                     <th scope="col">Editar</th>
                     </tr>
                 </thead>
@@ -176,11 +176,11 @@
                     <?php require "layout/icons/btnadd.php" ?>
                 </button>
             </a>            
-            <table class="table table-striped">
+            <table class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Área</th>        
+                    <th scope="col" style="width:100%">Área</th>        
                     <th scope="col">Editar</th>
                     </tr>
                 </thead>
@@ -219,11 +219,11 @@
                     <?php require "layout/icons/btnadd.php" ?>
                 </button>
             </a>            
-            <table class="table table-striped">
+            <table class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Marca</th>        
+                        <th scope="col" style="width:100%">Marca</th>        
                         <th scope="col">Editar</th>
                     </tr>
                 </thead>

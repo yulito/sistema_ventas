@@ -2,7 +2,7 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
 
     <div class="textTitle">
-        <h2>Agregar Localidad/Comuna</h2>        
+        <h4>Agregar Localidad/Comuna</h4>
     </div>
     <div class="edit-box">
         <a href="/gestion-ubicacion">Volver</a>

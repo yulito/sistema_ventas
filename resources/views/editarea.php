@@ -2,7 +2,7 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
 
     <div class="textTitle">
-        <h2>Editar área</h2>        
+        <h4>Editar área</h4>        
     </div>
     <div class="edit-box">
         <a href="/gestion-productos">Volver</a>

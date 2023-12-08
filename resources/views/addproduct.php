@@ -2,7 +2,7 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
 
     <div class="textTitle">
-        <h2>Agregar Producto</h2>        
+        <h4>Agregar Producto</h4>
     </div>
     <div class="edit-box">
         <a href="/gestion-productos">Volver</a>

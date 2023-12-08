@@ -2,7 +2,7 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
 
     <div class="textTitle">
-        <h2>Editar usuario </h2>        
+        <h4>Editar usuario </h4>        
     </div>
     <div class="edit-box">
         <a href="/gestion-usuario">Volver</a>

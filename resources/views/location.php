@@ -2,7 +2,7 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
 
 <div class="textTitle">
-    <h2>Locaciones/Comunas</h2>
+    <h4>Locaciones/Comunas</h4>
 </div>
 
 <div>
