@@ -38,7 +38,7 @@ class ProductController extends Controller{
         echo json_encode($result); 
     }
     public function showAdd(){
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             return $this->view('addproduct');
         }else{
             return $this->redirect('/');
@@ -223,5 +223,12 @@ class ProductController extends Controller{
             }
         }
         echo json_encode($msg['msg']);
+    }
+    public function showBatch(){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 2){
+            return $this->view('addbatch');
+        }else{
+            return $this->redirect('/');
+        }
     }
 } 

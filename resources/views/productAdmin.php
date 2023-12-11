@@ -22,11 +22,15 @@
         <!------------ PRODUCTOS -->
         <div class="tab-pane fade show active" id="nav-prod" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="box-fxd">
+
+            <?php if($_SESSION['auth']->id_tipo == 1): ?>
                 <a href="/agregar-productos">
                     <button class="btn btn-primary btn-add-prod" style="margin-bottom: 20px;">
                         <?php require "layout/icons/btnadd.php" ?>
                     </button>
-                </a>            
+                </a>
+            <?php endif; ?>            
+                
                 <nav class="navbar navbar-light bg-light">
                     <div class="container-fluid">
                         <!-- buscador -->
@@ -47,7 +51,8 @@
                         <th scope="col">Stock</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Modificación</th>
-                        <th scope="col">Detalle | Editar</th>
+                        <th scope="col">Detalle | Editar                        
+                        </th>
                     </tr>
                 </thead>
                 <tbody id="tbd-prod">
@@ -64,13 +69,12 @@
                                 <button class="btn btn-info btn-see-prod" data-bs-toggle="modal" data-bs-target="#prodModal" >
                                     <?php require "layout/icons/btnlook.php" ?>
                                 </button>   
-
+                               
                                 <a id="link-edit-prod">
                                     <button class="btn btn-warning btn-edit-prod" >
                                         <?php require "layout/icons/btnedit.php" ?>
                                     </button>
-                                </a>
-
+                                </a>             
                             </td>                    
                         </tr> 
                     </template>                   
@@ -80,18 +84,24 @@
         <?php require_once "layout/modals/prodmodal.php"; ?>
 
         <!------------ CATEGORIAS -->
-        <div class="tab-pane fade" id="nav-cat" role="tabpanel" aria-labelledby="nav-profile-tab" >            
+        <div class="tab-pane fade" id="nav-cat" role="tabpanel" aria-labelledby="nav-profile-tab" >  
+            <?php if($_SESSION['auth']->id_tipo == 1): ?>          
                 <a href="/agregar-categoria">
                     <button class="btn btn-primary" style="margin-bottom: 20px;">
                         <?php require "layout/icons/btnadd.php" ?>
                     </button>
-                </a>  
+                </a> 
+            <?php endif; ?> 
                 <table class="table table-striped" style="width:100%">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col" style="width:100%">Categoría</th>        
-                        <th scope="col">Editar</th>
+                            <th scope="col">#</th>
+                            <th scope="col" style="width:100%">Categoría</th> 
+                            <?php if($_SESSION['auth']->id_tipo == 1): ?>       
+                                <th scope="col">                            
+                                    Editar                                                        
+                                </th>
+                            <?php endif; ?> 
                         </tr>
                     </thead>
                     <tbody>                                                                                 
@@ -102,13 +112,15 @@
                                 <tr>
                                     <th scope="row"><?= $countcat?></th>
                                     <td><?= $cat->cat;?></td>
-                                    <td>
-                                        <a href="/editar-categoria/<?=$cat->id_cat?>">
-                                            <button class="btn btn-warning" >
-                                                <?php require "layout/icons/btnedit.php" ?>
-                                            </button>  
-                                        </a>                      
-                                    </td>                    
+                                    <?php if($_SESSION['auth']->id_tipo == 1): ?>
+                                        <td>
+                                            <a href="/editar-categoria/<?=$cat->id_cat?>">
+                                                <button class="btn btn-warning" >
+                                                    <?php require "layout/icons/btnedit.php" ?>
+                                                </button>  
+                                            </a>                      
+                                        </td>  
+                                    <?php endif; ?>                  
                                 </tr>
                                 <?php $countcat++; 
                                 endwhile;?>
@@ -125,19 +137,24 @@
 
         <!------------ SUBCATEGORIAS -->
         <div class="tab-pane fade" id="nav-sub" role="tabpanel" aria-labelledby="nav-profile-tab" >
-            <a href="/agregar-subcategoria">
-                <button class="btn btn-primary" style="margin-bottom: 20px;">
-                    <?php require "layout/icons/btnadd.php" ?>
-                </button>
-            </a>            
-            
+            <?php if($_SESSION['auth']->id_tipo == 1): ?>
+                <a href="/agregar-subcategoria">
+                    <button class="btn btn-primary" style="margin-bottom: 20px;">
+                        <?php require "layout/icons/btnadd.php" ?>
+                    </button>
+                </a>            
+            <?php endif; ?>
             <table class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" style="width:40%">Sub-categoría</th>   
-                    <th scope="col"style="width:60%">Categoría</th>        
-                    <th scope="col">Editar</th>
+                        <th scope="col">#</th>
+                        <th scope="col" style="width:40%">Sub-categoría</th>   
+                        <th scope="col"style="width:60%">Categoría</th>        
+                        <?php if($_SESSION['auth']->id_tipo == 1): ?>       
+                                <th scope="col">                            
+                                    Editar                                                        
+                                </th>
+                        <?php endif; ?> 
                     </tr>
                 </thead>
                 <tbody>
@@ -149,13 +166,15 @@
                                 <th scope="row"><?= $countsub?></th>
                                 <td><?= $sub->subcat;?></td>
                                 <td><?= $sub->cat;?></td>
-                                <td>
-                                    <a href="/editar-subcategoria/<?=$sub->id_sub?>">
-                                        <button class="btn btn-warning" >
-                                            <?php require "layout/icons/btnedit.php" ?>
-                                        </button>  
-                                    </a>                      
-                                </td>                    
+                                <?php if($_SESSION['auth']->id_tipo == 1): ?> 
+                                    <td>
+                                        <a href="/editar-subcategoria/<?=$sub->id_sub?>">
+                                            <button class="btn btn-warning" >
+                                                <?php require "layout/icons/btnedit.php" ?>
+                                            </button>  
+                                        </a>                      
+                                    </td> 
+                                <?php endif; ?>                    
                             </tr>
                             <?php $countsub++; 
                             endwhile;?>
@@ -171,17 +190,23 @@
         </div>             
         <!------------ AREAS -->
         <div class="tab-pane fade" id="nav-area" role="tabpanel" aria-labelledby="nav-profile-tab" >
-            <a href="/agregar-area">
-                <button class="btn btn-primary" style="margin-bottom: 20px;">
-                    <?php require "layout/icons/btnadd.php" ?>
-                </button>
-            </a>            
+            <?php if($_SESSION['auth']->id_tipo == 1): ?>
+                <a href="/agregar-area">
+                    <button class="btn btn-primary" style="margin-bottom: 20px;">
+                        <?php require "layout/icons/btnadd.php" ?>
+                    </button>
+                </a>
+            <?php endif; ?>
             <table class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" style="width:100%">Área</th>        
-                    <th scope="col">Editar</th>
+                        <th scope="col">#</th>
+                        <th scope="col" style="width:100%">Área</th>        
+                        <?php if($_SESSION['auth']->id_tipo == 1): ?>       
+                                <th scope="col">                            
+                                    Editar                                                        
+                                </th>
+                        <?php endif; ?> 
                     </tr>
                 </thead>
                 <tbody>
@@ -192,13 +217,15 @@
                     <tr>
                         <th scope="row"><?= $count?></th>
                         <td><?= $area->area_;?></td>
+                        <?php if($_SESSION['auth']->id_tipo == 1): ?>  
                         <td>
                             <a href="/editar-area/<?=$area->id_area?>">
                                 <button class="btn btn-warning" >
                                     <?php require "layout/icons/btnedit.php" ?>
                                 </button>  
                             </a>                      
-                        </td>                    
+                        </td>
+                        <?php endif; ?> 
                     </tr>
                     <?php $count++; 
                     endwhile;?>
@@ -214,17 +241,23 @@
         </div>         
         <!------------ MARCAS -->
         <div class="tab-pane fade" id="nav-brand" role="tabpanel" aria-labelledby="nav-profile-tab" >
-            <a href="/agregar-marca">
-                <button class="btn btn-primary" style="margin-bottom: 20px;">
-                    <?php require "layout/icons/btnadd.php" ?>
-                </button>
-            </a>            
+            <?php if($_SESSION['auth']->id_tipo == 1): ?>
+                <a href="/agregar-marca">
+                    <button class="btn btn-primary" style="margin-bottom: 20px;">
+                        <?php require "layout/icons/btnadd.php" ?>
+                    </button>
+                </a>
+            <?php endif; ?>
             <table class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col" style="width:100%">Marca</th>        
-                        <th scope="col">Editar</th>
+                        <?php if($_SESSION['auth']->id_tipo == 1): ?>       
+                                <th scope="col">                            
+                                    Editar                                                        
+                                </th>
+                        <?php endif; ?> 
                     </tr>
                 </thead>
                 <tbody>
@@ -235,13 +268,17 @@
                         <tr>
                             <th scope="row"><?= $countbrand?></th>
                             <td><?= $brand->marca_;?></td>
-                            <td>
-                                <a href="/editar-marca/<?=$brand->id_marca?>">
-                                    <button class="btn btn-warning" >
-                                        <?php require "layout/icons/btnedit.php" ?>
-                                    </button>  
-                                </a>                      
-                            </td>                    
+
+                            <?php if($_SESSION['auth']->id_tipo == 1): ?>       
+                                <td>
+                                    <a href="/editar-marca/<?=$brand->id_marca?>">
+                                        <button class="btn btn-warning" >
+                                            <?php require "layout/icons/btnedit.php" ?>
+                                        </button>  
+                                    </a>                      
+                                </td> 
+                            <?php endif; ?> 
+                                               
                         </tr>
                         <?php $countbrand++; 
                         endwhile;?>

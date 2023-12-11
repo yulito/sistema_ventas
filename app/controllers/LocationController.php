@@ -8,14 +8,14 @@ use App\Helpers\Msg;
 class LocationController extends Controller{
 
     public function index(){
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             return $this->view('location');
         }else{
             return $this->redirect('/');
         }
     }
     public function showAdd(){        
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             return $this->view('addlocation');
         }else{
             return $this->redirect('/');
@@ -46,7 +46,7 @@ class LocationController extends Controller{
 
     }
     public function showEdit($id){ 
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             $obj = new Location();
             $location = $obj->getOne($id);
             if($location){

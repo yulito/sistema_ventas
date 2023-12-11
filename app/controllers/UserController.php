@@ -8,7 +8,7 @@ use App\Helpers\Msg;
 class UserController extends Controller{
 
     public function index(){
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             return $this->view('userAdmin');
         }else{
             return $this->redirect('/');
@@ -69,7 +69,7 @@ class UserController extends Controller{
     }
 
     public function viewEdit($name){  
-        if(isset($_SESSION['auth'])){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             $name = str_replace("0y0", " ", $name);
             $obj = new User();
             $user = $obj->validateName($name);

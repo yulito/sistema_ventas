@@ -8,7 +8,7 @@ use App\Helpers\Msg;
 class BrandController extends Controller{
 
     public function index(){
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             return $this->view('addbrand');
         }else{
             return $this->redirect('/');
@@ -41,7 +41,7 @@ class BrandController extends Controller{
     }
 
     public function showEdit($id){
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             $obj = new Brand();
             $brand = $obj->getOne($id);
             if($brand){

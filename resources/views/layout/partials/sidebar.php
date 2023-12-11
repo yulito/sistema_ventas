@@ -25,10 +25,9 @@
             </a>
         </li>
         
-        <!------ MENUS (debemos de poner una condicion para cambiar de menu segun usuario)-------------------------------------------------->
-        <?php require_once "menuadmin.php"; ?>
-        
-        <!-- require_once "partials/menu.user.php"; -->
+        <?php if($_SESSION['auth']->id_tipo == 1): ?>
+            <?php require_once "menuadmin.php"; ?>
+        <?php endif; ?>
 
         <li class="list-group-item ">
             <a href="https://www.desmos.com/scientific?lang=es" target="_blank" class="calculator nav-link text-white ">

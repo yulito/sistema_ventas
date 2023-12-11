@@ -8,7 +8,7 @@ use App\Helpers\Msg;
 class AreaController extends Controller{
 
     public function index(){
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             return $this->view('addarea');
         }else{
             return $this->redirect('/');
@@ -41,7 +41,7 @@ class AreaController extends Controller{
     }
 
     public function showEdit($id){
-        if($_SESSION['auth']){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
             $obj = new Area();
             $area = $obj->getOne($id);
             if($area){
