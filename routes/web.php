@@ -30,6 +30,8 @@ Route::get('/listar-productos/:prod', [ProductController::class, 'list']);
 Route::get('/mostrar-producto/:id', [ProductController::class, 'show']);
 Route::get('/editar-producto/:id', [ProductController::class, 'showEdit']);
 Route::post('/editar-producto', [ProductController::class, 'edit']);
+Route::get('/agregar-stock', [ProductController::class, 'showStock']);
+Route::post('/agregar-stock', [ProductController::class, 'addStock']);
 
 //subcategoria
 Route::get('/agregar-subcategoria', [SubcategoryController::class, 'index']);

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Product;
+use App\Models\Batch;
 use App\Helpers\Msg;
 
 class ProductController extends Controller{
@@ -181,6 +182,46 @@ class ProductController extends Controller{
                 $msg['msg']['fail'] = Msg::FAILED_OPERATION . ' Probablemente ya existe un producto con el mismo nombre o código.'; 
             }
         }        
+        echo json_encode($msg['msg']);
+    }
+    public function showStock(){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 2){
+            return $this->view('addbatch');
+        }else{
+            return $this->redirect('/');
+        }
+    }
+    public function addStock(){
+        $this->headJson();
+        $this->validateToken($_POST['token_']);  
+
+        $batch      = !empty($_POST['batch']) ? $_POST['batch'] : NULL;
+        $prod       = !empty($_POST['codProd']) ? $_POST['codProd'] : NULL;
+        $quantity   = isset($_POST['quantity']) ? (double)$_POST['quantity'] : NULL;
+        $weight     = isset($_POST['weight']) ? (double)$_POST['weight'] : NULL;
+        $elaborated = !empty($_POST['elaborated']) ? $_POST['elaborated'] : strtotime($_POST['elaborated'] );
+        $expiration = !empty($_POST['expiration']) ? $_POST['expiration'] : strtotime($_POST['expiration'] );
+
+        $msg['msg'] = [];
+
+        if($batch == null || $prod == null || $quantity == null ){
+            $msg['msg']['field'] = Msg::EMPTY_FIELD;
+        }
+        if(empty($msg['msg'])){
+            $obj = new Batch();
+            $obj->setBatch($batch);
+            $obj->setQuantity($quantity);
+            $obj->setWeight($weight);
+            $obj->setElaborated($elaborated);
+            $obj->setExpiration($expiration);
+            $obj->setProd($prod);
+            $result = $obj->save();
+            if($result){
+                $msg['msg']['success'] = Msg::MSG_SUCCESS;
+            }else{
+                $msg['msg']['fail'] = Msg::FAILED_OPERATION;
+            }
+        }
         echo json_encode($msg['msg']);
     }
 } 
