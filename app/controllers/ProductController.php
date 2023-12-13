@@ -225,10 +225,57 @@ class ProductController extends Controller{
         echo json_encode($msg['msg']);
     }
     public function showBatch(){
-        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 2){
-            return $this->view('addbatch');
+        if($_SESSION['auth']){
+            return $this->view('batch');
         }else{
             return $this->redirect('/');
         }
+    }
+    public function listBatch(){
+        $this->headJson();
+        //$this->validateToken($_POST['token_']);  
+
+        $date1 = $_POST['idfrom'];
+        $date2 = $_POST['idto'];
+
+        $obj = new Batch();
+        $result = $obj->getAll($date1,$date2);
+        if($result){
+            echo json_encode($result);
+        }else{
+            $msg['msg']['emptySection'] = Msg::EMPTY_SECTION;
+            echo json_encode($msg['msg']);
+        }
+    }
+    public function showOneBatch($id){        
+        if(isset($_SESSION['auth'])){
+            $obj = new Batch();
+            $bat = $obj->getOne($id);
+            if($bat){
+                return $this->view('showbatch',compact('bat'));
+            }else{
+                return $this->redirect('/');
+            }
+        }else{
+            return $this->redirect('/');
+        }        
+    }
+    public function deleteBatch($id){
+        $this->validateToken($_POST['token_']); 
+
+        $qn = (double)$_POST['cantidad'];
+        $prod = $_POST['codprod'];
+
+        $obj = new Batch();
+        $obj->setQuantity($qn);
+        $obj->setProd($prod);
+        $result = $obj->remove($id);
+        if($result){
+            return $this->redirect('/');
+        }else{
+            $msg = Msg::ERROR_404;
+            return $this->view('error/page404', compact("msg"));
+        }
+        
     }
 } 

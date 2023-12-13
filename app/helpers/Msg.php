@@ -17,6 +17,7 @@ class Msg{
     const COD_EXIST     = "Este código ya está en uso. Intente con otro código.";
     const AUTH_ERROR    = "Idenficación fallida!!.";
     const EMPTY_SUB     = "Aún no se ha agregado subcategorías para esta categoría.";
+    const EMPTY_SECTION = "No hay nada registrado.";
     
     const PASS_NOTMATCH = "Las contraseñas no coinciden";
     const FAILED_OPERATION = "La operación a fallado!.";

@@ -33,7 +33,9 @@ Route::post('/editar-producto', [ProductController::class, 'edit']);
 Route::get('/agregar-stock', [ProductController::class, 'showStock']);
 Route::post('/agregar-stock', [ProductController::class, 'addStock']);
 Route::get('/lotes', [ProductController::class, 'showBatch']);
-Route::post('/lotes/:cod', [ProductController::class, 'listBatch']);
+Route::post('/lotes', [ProductController::class, 'listBatch']);
+Route::get('/mostrar-lote/:id', [ProductController::class, 'showOneBatch']);
+Route::post('/eliminar-lote/:id', [ProductController::class, 'deleteBatch']);
 
 //subcategoria
 Route::get('/agregar-subcategoria', [SubcategoryController::class, 'index']);
