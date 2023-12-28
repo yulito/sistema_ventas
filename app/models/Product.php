@@ -111,6 +111,22 @@ class Product extends Model
             return false;
         }
     }
+    public function getSearch($param){
+        $sql = "SELECT p.id_prod,p.cod, p.producto_, p.foto, p.umedida,
+                p.stock, p.valor, p.desc_x_prod, m.marca_, a.area_
+                FROM producto p LEFT OUTER JOIN marca m USING(id_marca)                            
+                            LEFT OUTER JOIN area a USING(id_area)
+                            WHERE cod LIKE '%$param%' OR producto_ LIKE '%$param%' LIMIT 0,4";   // OR producto_ LIKE '%$param%'
+        $prod = $this->connection->query($sql);
+        if($prod->num_rows > 0){
+            while($data = $prod->fetch_assoc()){
+                $obj[] = $data;
+            }
+            return $obj;
+        }else{
+            return false;
+        }
+    }
     public function getOne($id){
         $sql = "SELECT p.id_prod,p.cod, p.feccreacion, p.fecactual, p.producto_, p.proddescrip, p.foto, p.umedida,
                 p.stock, p.valor, p.desc_x_prod, m.marca_, s.subcat, a.area_,c.cat, p.id_sub, p.id_marca, p.id_area

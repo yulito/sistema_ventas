@@ -15,7 +15,8 @@ class ProductController extends Controller{
             return $this->redirect('/');
         }        
     }
-    public function list($prod){     
+    public function list($prod){    
+        header('Content-Type: text/html; charset=utf-8'); 
         $p = null;
         if($prod === 'false'){
             $p = "";
@@ -29,6 +30,21 @@ class ProductController extends Controller{
         $result = $obj->getAll($p);
 
         echo json_encode($result);        
+    }
+    public function getProd($prod){
+        header('Content-Type: text/html; charset=utf-8');
+        $this->headJson();
+        $msg['msg'] = [];
+        if($prod){
+            $prod = str_replace("0y0", " ", $prod);            
+            $p = $prod;
+            $obj = new Product();
+            $result = $obj->getSearch($p);
+            echo json_encode($result);
+        }else{
+            $msg['msg']['empty'] = Msg::EMPTY_SECTION;
+            echo json_encode($msg['msg']);
+        }         
     }
     public function show($id){
         $this->headJson(); 
@@ -161,7 +177,17 @@ class ProductController extends Controller{
                         mkdir('uploads', 0777, true);
                     }
                     $namePhoto  = date("d-m-Y").'_'.$photo['name'];
-                    move_uploaded_file($photo['tmp_name'], 'uploads/'.$namePhoto);                                                   
+                    move_uploaded_file($photo['tmp_name'], 'uploads/'.$namePhoto);
+                    
+                    /* //Eliminar foto antigua  (PRIMERO LLAMAR A UNA FUNCION QUE NOS TRAIGA LA FOTO ANTIGUA)                                
+                    $gestor = opendir('uploads/');
+                    if($gestor){
+                        while(($ficheros = readdir($gestor)) !== false){
+                            if($ficheros == PONER NOMBRE DE FOTO ANTIGUA){
+                                unlink('uploads/'.$ficheros);
+                            }
+                        }
+                    } */
                 }
             }
             //enviar datos a la clase
@@ -278,4 +304,5 @@ class ProductController extends Controller{
         }
         
     }
+    
 } 

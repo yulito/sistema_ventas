@@ -10,6 +10,7 @@ use App\Controllers\SubcategoryController;
 use App\Controllers\BrandController;
 use App\Controllers\LocationController;
 use App\Controllers\OfficeController;
+use App\Controllers\SaleController;
 
 // ---- todas las rutas
 Route::get('/', [SessionController::class, 'index']);
@@ -27,6 +28,7 @@ Route::get('/gestion-productos', [ProductController::class, 'index']);
 Route::get('/agregar-productos', [ProductController::class, 'showAdd']);
 Route::post('/agregar-productos', [ProductController::class, 'store']);
 Route::get('/listar-productos/:prod', [ProductController::class, 'list']);
+Route::get('/traer-producto/:prod', [ProductController::class, 'getProd']);
 Route::get('/mostrar-producto/:id', [ProductController::class, 'show']);
 Route::get('/editar-producto/:id', [ProductController::class, 'showEdit']);
 Route::post('/editar-producto', [ProductController::class, 'edit']);
@@ -67,6 +69,9 @@ Route::get('/editar-locacion/:id', [LocationController::class, 'showEdit']);
 Route::post('/editar-locacion', [LocationController::class, 'edit']);
 //---- sucursal
 Route::post('/gestion-sucursal', [OfficeController::class, 'store']);
+
+//---- sistema ventas
+Route::get('/sistema-venta', [SaleController::class, 'index']); 
 
 // --------------------
 Lib\Route::dispatch();

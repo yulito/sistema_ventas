@@ -76,7 +76,8 @@ class Batch extends Model
         $result = false;
         if($bool){
             //update stock from producto
-            $sql = "UPDATE producto SET stock = stock + '{$this->getQuantity()}'
+            $sql = "UPDATE producto SET stock = stock + '{$this->getQuantity()}',
+                    fecactual = NOW()
                     WHERE cod = '{$this->getProd()}'";
             $result = $this->connection->query($sql);
         }
@@ -108,7 +109,8 @@ class Batch extends Model
 
         $result = false;        
         if($bool){            
-            $sql = "UPDATE producto SET stock = stock - '{$this->getQuantity()}'
+            $sql = "UPDATE producto SET stock = stock - '{$this->getQuantity()}',
+                    fecactual = NOW()
                     WHERE cod = '{$this->getProd()}'";
             $result = $this->connection->query($sql);
         }
