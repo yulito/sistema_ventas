@@ -72,6 +72,8 @@ Route::post('/gestion-sucursal', [OfficeController::class, 'store']);
 
 //---- sistema ventas
 Route::get('/sistema-venta', [SaleController::class, 'index']); 
+Route::get('/documento/:doc', [SaleController::class, 'show']);
+Route::post('/documento/:doc', [SaleController::class, 'store']);
 
 // --------------------
 Lib\Route::dispatch();

@@ -298,8 +298,8 @@ document.querySelector('#idBoleta').addEventListener('click',(e)=>{
     }else{
         //almacenar en localstorage
         saveLocalStorage()
-
         //enviar a vista de boleta
+        location.href = '/documento/boleta';
     }
 })
 //----
@@ -311,8 +311,8 @@ document.querySelector('#idFactura').addEventListener('click',(e)=>{
     }else{
         //almacenar en localstorage
         saveLocalStorage()
-
         //enviar a vista de factura
+        location.href = '/documento/factura';
     }
 })
 

@@ -26,7 +26,7 @@ class SaleDetails extends Model
         $this->idventa = $idventa;
     }
     function setIdprod($idprod){
-        $this->idprod = $idprod;
+        $this->idprod = $this->connection->real_escape_string($idprod);
     }
     //getters
     function getCantidad(){
@@ -46,5 +46,21 @@ class SaleDetails extends Model
     }
 
     //functions
-    
+    public function save(){
+        $descDet = $this->getDescdetalle();
+        if(empty($descDet) || !isset($descDet) || is_null($descDet) || $descDet == false)
+        {
+            $descDet = 0;
+        }
+        $sql = "INSERT INTO detalle_venta (cantidad_prod, desc_detalle, total_detalle, id_venta, id_prod) 
+                VALUES ('{$this->getCantidad()}',$descDet,'{$this->getTotaldetalle()}','{$this->getIdventa()}', (select id_prod from producto where producto_ = '{$this->getIdprod()}'))";
+        $bool = false;
+        if($this->connection->query($sql))
+        {
+            $sql = "UPDATE producto SET stock = stock - '{$this->getCantidad()}' 
+                    WHERE producto_ = '{$this->getIdprod()}'";
+            $bool = $this->connection->query($sql);
+        }
+        return $bool;
+    }
 }

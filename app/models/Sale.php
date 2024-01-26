@@ -9,7 +9,7 @@ class Sale extends Model
     private $subtotal;
     private $descventa;
     private $total;
-    private $rutempresa; //--- desde aca hacia abajo son opcionales salvo iddoc e idpago
+    private $rutempresa; 
     private $nomempresa;
     private $direccion;
     private $idcomuna;
@@ -40,6 +40,9 @@ class Sale extends Model
         $this->idcomuna = $idcomuna;
     }
     function setIdsucursal($idsucursal){
+        if(!$idsucursal){
+            $idsucursal = '(SELECT id_sucursal FROM sucursal)';
+        }
         $this->idsucursal = $idsucursal;
     }
     function setIddoc($iddoc){
@@ -79,10 +82,21 @@ class Sale extends Model
     function getIdpago(){
         return $this->idpago;
     }  
-    
-    
-    /* 
+        
     //------
+    public function save(){
+        $idcom = $this->getIdcomuna();
+        if(!$idcom){
+            $idcom = 'NULL';
+        }
+        $sql = "INSERT INTO venta (fecventa, subtotal, descventa, total, rutempresa, nomempresa, direcemp, id_comuna ,id_sucursal, id_doc , id_pago) 
+                VALUES (NOW(),'{$this->getSubtotal()}','{$this->getDescventa()}','{$this->getTotal()}','{$this->getRutempresa()}','{$this->getNomempresa()}','{$this->getDireccion()}',$idcom,{$this->getIdsucursal()},'{$this->getIddoc()}','{$this->getIdpago()}')";
+        $this->connection->query($sql);
+        //obtener el id insertado con el auto_increment
+        return $this->connection->insert_id;
+    }
+
+    /*    
     public function getAll(){
         $sql = "SELECT * FROM area";
         $obj = $this->connection->query($sql);
@@ -92,12 +106,7 @@ class Sale extends Model
         $sql = "SELECT * FROM area WHERE id_area = '$id'";
         $obj = $this->connection->query($sql);
         return $obj->fetch_object();
-    }
-    public function save(){
-        $sql = "INSERT INTO area (area_) VALUES('{$this->getArea()}')";
-        $result = $this->connection->query($sql);
-        return $result;
-    }
+    }    
     public function update($id){
         $sql = "UPDATE area SET 
                 area_ = '{$this->getArea()}'
