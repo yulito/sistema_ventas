@@ -107,7 +107,7 @@ btnNewUser.addEventListener('click',(e)=>{
                     <td>${msg.user.name}</td>
                     <td>${type}</td>
                     <td>
-                    <a href="/editar-usuario/${msg.user.name}">
+                    <a href="/editar-usuario/${msg.user.name.replaceAll(" ", "0y0")}">
                         <button  
                         type="button" id="btn-edit-user" class="btn btn-warning">                                                                        
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

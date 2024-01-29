@@ -68,9 +68,9 @@ class UserController extends Controller{
         echo json_encode($user);
     }
 
-    public function viewEdit($name){  
+    public function viewEdit($n){  
         if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
-            $name = str_replace("0y0", " ", $name);
+            $name = str_replace("0y0", " ", $n);
             $obj = new User();
             $user = $obj->validateName($name);
             if($user){
