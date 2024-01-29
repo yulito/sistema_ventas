@@ -1,3 +1,4 @@
+import {docPDF} from './generatorPDF.js'
 //Datos de localstorage
 const vTotal = JSON.parse(localStorage.getItem("totalSale"));
 const detailList = JSON.parse(localStorage.getItem("productRow"));
@@ -58,12 +59,12 @@ saveBtn.addEventListener('click',(e)=>{
 
     //---- BOLETA
     if(docSale === 'boleta'){ 
-        sendPOST("1")
+        sendPOST("1")        
     }
 
     //---- FACTURA
     if(docSale === 'factura'){
-        sendPOST("2")
+        sendPOST("2")         
     }
 
     //----
@@ -78,14 +79,27 @@ saveBtn.addEventListener('click',(e)=>{
         }).then( response => response.json() )
         .then( msg =>{           
             //una vez confirma con un msg positivo, activamos el hidden del mensaje de espera y habilitamos el btn PDF.
-            document.getElementById('msg-wait').style.color = 'green';
-            document.getElementById('msg-wait').innerHTML = '<i>'+msg+'</i>';
-            btnPDF.hidden = false  
-            saveBtn.disabled = true                
-            //eliminamos localstorage, operamos btn pdf con un evento listener, creamos pdf y redireccionamos a ventas
-            localStorage.clear()
-            console.log('datos de localstorage eliminados \n estos datos para el pdf son del clon: ')
-            console.log(dtSale)
+            if(msg.fail){
+                document.getElementById('msg-wait').style.color = 'red';
+                document.getElementById('msg-wait').innerHTML = '<i>'+msg.fail+'</i>';                
+                saveBtn.disabled = true
+            }
+            if(msg.success){
+                document.getElementById('msg-wait').style.color = 'green';
+                document.getElementById('msg-wait').innerHTML = '<i>'+msg.success+'</i>';
+                btnPDF.hidden = false  
+                saveBtn.disabled = true                
+                //eliminamos localstorage
+                localStorage.clear()
+                //btn pdf con un evento listener,
+                btnPDF.addEventListener('click',(e)=>{
+                    e.preventDefault
+                    btnPDF.disabled = true
+                    //deberiamos agregar los parametros que faltan para datos del pdf                      
+                    docPDF(dtSale,docSale,msg) //dtSale es el clon del arreglo rescatado del localstorage que enviamos al backend
+                    location.href = "/"
+                })
+            }            
 
         })
         .catch( err => console.log(err) )

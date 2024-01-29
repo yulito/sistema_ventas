@@ -94,6 +94,12 @@ class Sale extends Model
         $this->connection->query($sql);
         //obtener el id insertado con el auto_increment
         return $this->connection->insert_id;
+    }    
+
+    public function getLocation($param){
+        $sql = "SELECT comuna_ FROM comuna WHERE id_comuna = '$param'";
+        $obj = $this->connection->query($sql);
+        return $obj->fetch_assoc();
     }
 
     /*    

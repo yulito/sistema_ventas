@@ -13,21 +13,32 @@
                 <div class="mb-3 row">
 
                     <?php if($document == "factura"): ?> 
-                        <label for="area" class="row-sm-2 row-form-label"></label>
+                        <label for="rutCompany" class="row-sm-2 row-form-label">Rut Empresa:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="area" name="area" >
+                            <input type="text" class="form-control" id="rutCompany" name="rutCompany" >
                         </div>
-                        <label for="area" class="row-sm-2 row-form-label"></label>
+                        <label for="nameCompany" class="row-sm-2 row-form-label">Nombre Empresa(razón social)</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="area" name="area" >
+                            <input type="text" class="form-control" id="nameCompany" name="nameCompany" >
                         </div>
-                        <label for="area" class="row-sm-2 row-form-label"></label>
+                        <label for="addressCompany" class="row-sm-2 row-form-label">Dirección Empresa:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="area" name="area" >
+                            <input type="text" class="form-control" id="addressCompany" name="addressCompany" >
                         </div>
-                        <label for="area" class="row-sm-2 row-form-label"></label>
+                        
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="area" name="area" >
+                            <label for="location" class="row-sm-2 row-form-label">Comuna</label>
+                            <select name="location" id="location" class="form-control">
+                                <option value="" selected disabled>Selecciona una comuna</option> 
+                                <?php $objLocation = $this->showLocation(); ?>
+                                <?php if($objLocation): ?>
+                                    <?php while($location = $objLocation->fetch_object()): ?>                                                                     
+                                        <option value=<?=$location->id_comuna?>><?= $location->comuna_?></option>                            
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                        <option selected disabled>No hay comunas agregadas</option>
+                                <?php endif; ?>
+                            </select>
                         </div>
                     <?php endif; ?>
                         <label for="descxtotal" class="row-sm-2 row-form-label">Descuento Adicional al total de la compra</label>
@@ -57,5 +68,8 @@
         </div>
     </div>
 
-<script src="/assets/js/sale.js"></script>
+<script src="/assets/js/sale.js" type="module"></script>
+<!-- jspdf cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<!--------------->
 <?php require_once "layout/down.php"; ?>

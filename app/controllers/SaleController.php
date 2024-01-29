@@ -54,14 +54,17 @@ class SaleController extends Controller{
         }
 
         //datos para factura
+        $lctn = false;
         if($doc == "2")
-        {
-            /* Aun falta definir los campos del formulario para esta seccion (factura)
-            $saleObj->setRutempresa($json->totalSale->);
-            $saleObj->setNomempresa($json->totalSale->);
-            $saleObj->setDireccion($json->totalSale->);
-            $saleObj->setIdcomuna($json->totalSale->);
-            $saleObj->setIdsucursal($json->totalSale->); */
+        {                        
+            if(!empty($json->totalSale->location)){
+                $lctn = (int)$json->totalSale->location;
+            }
+            $saleObj->setRutempresa($json->totalSale->rutCompany);
+            $saleObj->setNomempresa($json->totalSale->nameCompany);
+            $saleObj->setDireccion($json->totalSale->addressCompany);
+            $saleObj->setIdcomuna($lctn);
+            $saleObj->setIdsucursal(false);
             $saleObj->setIddoc((int)$doc);
             $saleObj->setIdpago((int)$json->totalSale->pay);
         }
@@ -84,11 +87,22 @@ class SaleController extends Controller{
                 $objDet->setIdprod($json->details[$i]->product); 
                 //guardar cambios de venta
                 $objDet->save();
-            }            
-            echo json_encode($msg['msg']['success'] = Msg::MSG_SUCCESS);
+            }
+
+            //traer comuna
+            if($lctn)
+            {
+                $obj = new Sale();
+                $resp = $obj->getLocation($lctn);
+                $msg['msg']['location'] = $resp;
+            }
+            $msg['msg']['success'] = Msg::MSG_SUCCESS;
+            $msg['msg']['nro'] = $idResponse; //nro venta 
+            echo json_encode($msg['msg']);
         }else{
-            echo json_encode($msg['msg']['fail'] = Msg::FAILED_OPERATION);
-        }   
+            $msg['msg']['fail'] = Msg::FAILED_OPERATION;
+            echo json_encode($msg['msg']);
+        }           
     }
 
     //----
