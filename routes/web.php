@@ -8,6 +8,7 @@ use App\Controllers\AreaController;
 use App\Controllers\CategoryController; 
 use App\Controllers\SubcategoryController; 
 use App\Controllers\BrandController;
+use App\Controllers\ClientController;
 use App\Controllers\LocationController;
 use App\Controllers\OfficeController;
 use App\Controllers\SaleController;
@@ -38,6 +39,14 @@ Route::get('/lotes', [ProductController::class, 'showBatch']);
 Route::post('/lotes', [ProductController::class, 'listBatch']);
 Route::get('/mostrar-lote/:id', [ProductController::class, 'showOneBatch']);
 Route::post('/eliminar-lote/:id', [ProductController::class, 'deleteBatch']);
+Route::get('/nivelar', [ProductController::class, 'showLevel']);
+Route::post('/nivelar', [ProductController::class, 'refreshStock']);
+
+//clientes
+Route::get('/clientes', [ClientController::class, 'index']); 
+Route::get('/agregar-cliente/:id', [ClientController::class, 'showAdd']);
+Route::post('/agregar-cliente/:accion', [ClientController::class, 'store']); 
+Route::get('/listar-clientes/:param', [ClientController::class, 'list']);
 
 //subcategoria
 Route::get('/agregar-subcategoria', [SubcategoryController::class, 'index']);

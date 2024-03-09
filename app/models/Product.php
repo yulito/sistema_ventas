@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Exception;
+
 class Product extends Model
 {
     protected $table = 'producto';
@@ -172,6 +174,18 @@ class Product extends Model
                  id_area = '{$this->getArea()}'
                  WHERE id_prod = '$id'";
         $result = $this->connection->query($sql);
+        return $result;
+    }
+    public function updateStock(){        
+        $bool = false;        
+        $result = $this->verifyCod($this->getCod());
+        
+        if($result->cod != null || !empty($result->cod) || isset($result->cod))
+        {
+            $sql = "UPDATE producto SET stock = '{$this->getStock()}' WHERE cod = '{$this->getCod()}';";
+            $this->connection->query($sql);
+            $bool = true;
+        }
         return $result;
     }
 }

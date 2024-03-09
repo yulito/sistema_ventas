@@ -2,7 +2,7 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
     
     <div>
-        <a href="/">Volver</a>
+        <a href="/lotes">Volver</a>
     </div>
     <hr>
     <div class="edit-box">        

@@ -304,5 +304,35 @@ class ProductController extends Controller{
         }
         
     }
-    
+    public function showLevel(){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
+            return $this->view('level');
+        }else{
+            return $this->redirect('/');
+        } 
+    }
+    public function refreshStock(){
+        $this->headJson();
+        $this->validateToken($_POST['token_']);
+
+        $cod = !empty($_POST['idcod']) ? trim($_POST['idcod']) : NULL;
+        $stock = isset($_POST['idstock']) ? (double)$_POST['idstock'] : NULL;
+
+        $msg['msg'] = [];
+        if($cod == null || $stock == null){
+            $msg['msg']['empty'] = Msg::ALL_FIELDS;
+        }
+        if(empty($msg['msg'])){
+            $obj = new Product();
+            $obj->setCod($cod);
+            $obj->setStock($stock);
+            if($obj->updateStock()){
+                $msg['msg']['success'] = Msg::MSG_SUCCESS;
+            }else{
+                $msg['msg']['fail'] = Msg::FAILED_OPERATION;
+            }
+        }
+        
+        echo json_encode($msg['msg']);
+    }
 } 
