@@ -12,6 +12,8 @@ use App\Controllers\ClientController;
 use App\Controllers\LocationController;
 use App\Controllers\OfficeController;
 use App\Controllers\SaleController;
+use App\Controllers\ShrinkageController;
+use App\Models\Shrinkage;
 
 // ---- todas las rutas
 Route::get('/', [SessionController::class, 'index']);
@@ -47,6 +49,13 @@ Route::get('/clientes', [ClientController::class, 'index']);
 Route::get('/agregar-cliente/:id', [ClientController::class, 'showAdd']);
 Route::post('/agregar-cliente/:accion', [ClientController::class, 'store']); 
 Route::get('/listar-clientes/:param', [ClientController::class, 'list']);
+
+//mermas
+Route::get('/mermas', [ShrinkageController::class, 'index']);
+Route::get('/agregar-merma', [ShrinkageController::class, 'showAdd']);
+Route::post('/agregar-merma', [ShrinkageController::class, 'store']);
+Route::get('/listar-mermas/:param', [ShrinkageController::class, 'list']);
+Route::get('/ver-merma/:id', [ShrinkageController::class, 'show']);
 
 //subcategoria
 Route::get('/agregar-subcategoria', [SubcategoryController::class, 'index']);
