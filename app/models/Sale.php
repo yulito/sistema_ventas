@@ -89,8 +89,8 @@ class Sale extends Model
         if(!$idcom){
             $idcom = 'NULL';
         }
-        $sql = "INSERT INTO venta (fecventa, subtotal, descventa, total, rutempresa, nomempresa, direcemp, id_comuna ,id_sucursal, id_doc , id_pago) 
-                VALUES (NOW(),'{$this->getSubtotal()}','{$this->getDescventa()}','{$this->getTotal()}','{$this->getRutempresa()}','{$this->getNomempresa()}','{$this->getDireccion()}',$idcom,{$this->getIdsucursal()},'{$this->getIddoc()}','{$this->getIdpago()}')";
+        $sql = "INSERT INTO venta (fecventa, vendedor, subtotal, descventa, total, rutempresa, nomempresa, direcemp, estado, id_comuna ,id_sucursal, id_doc , id_pago) 
+                VALUES (NOW(),'{$_SESSION['auth']->nomusuario}','{$this->getSubtotal()}','{$this->getDescventa()}','{$this->getTotal()}','{$this->getRutempresa()}','{$this->getNomempresa()}','{$this->getDireccion()}',1,$idcom,{$this->getIdsucursal()},'{$this->getIddoc()}','{$this->getIdpago()}')";
         $this->connection->query($sql);
         //obtener el id insertado con el auto_increment
         return $this->connection->insert_id;
@@ -100,6 +100,14 @@ class Sale extends Model
         $sql = "SELECT comuna_ FROM comuna WHERE id_comuna = '$param'";
         $obj = $this->connection->query($sql);
         return $obj->fetch_assoc();
+    }
+
+    public function remove($id){
+        $sql = "UPDATE venta SET 
+                estado = 0
+                WHERE id_venta = '$id'";
+        $result = $this->connection->query($sql);
+        return $result;
     }
 
     /*    
@@ -113,16 +121,5 @@ class Sale extends Model
         $obj = $this->connection->query($sql);
         return $obj->fetch_object();
     }    
-    public function update($id){
-        $sql = "UPDATE area SET 
-                area_ = '{$this->getArea()}'
-                WHERE id_area = '$id'";
-        $result = $this->connection->query($sql);
-        return $result;
-    }
-    public function verify($name){
-        $sql = "SELECT * FROM area WHERE area_ = '$name'";
-        $obj = $this->connection->query($sql);        
-        return $obj->fetch_object();
-    } */
+ */
 }

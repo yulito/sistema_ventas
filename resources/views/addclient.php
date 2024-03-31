@@ -4,8 +4,17 @@
     <div class="textTitle">
         <h4><?= $accion ?> Cliente</h4>
     </div>
-    <div class="edit-box">
-        <a href="/clientes">Volver</a>
+    <div class="edit-box">        
+        <div class="row">                
+                <div class="col-sm">
+                    <a href="/clientes">Volver a lista de clientes</a>
+                </div>
+                <div class="col-sm">                    
+                    <a href="/agregar-despacho">
+                        <strong>Agregar despacho</strong>
+                    </a>  
+                </div>                             
+            </div> 
   
         <div class="scrollForm">
         <form id="formClient" style="border: 8px solid gray; padding: 20px; width:600px">

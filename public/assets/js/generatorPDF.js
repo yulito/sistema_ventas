@@ -14,7 +14,7 @@ export function docPDF(element,docSale,msg){
     doc.setTextColor(0,0,0);
     doc.text(20, (23),'***********************************************************************************************');
     doc.text(20, (28),'Subtotal: $'+element.totalSale.subtotal+' \| '+
-                        'Descuento total de la compra: '+element.totalSale.descxtotal+' \| '+
+                        'Descuento total de la compra: '+element.totalSale.descxtotal+'% \| '+
                         'TOTAL COMPRA: $'+element.totalSale.total);
     doc.setFontSize(12);
     let i = 30
@@ -35,5 +35,5 @@ export function docPDF(element,docSale,msg){
         doc.text(20,(i+=5), 'Cantidad: '+data.qn+'  \|  Val/uni: '+data.val+'  \|  Desc/prod: '+data.valueu+'  \|  Total: '+data.total)
         doc.text(20,(i+=5), '_____________________________________________________________________________')
     })
-    doc.save('doc_compra.pdf');
+    doc.save(docSale+'_'+today.toLocaleDateString()+'_'+msg.nro+'_'+'venta.pdf');
 }

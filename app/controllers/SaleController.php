@@ -104,15 +104,38 @@ class SaleController extends Controller{
             echo json_encode($msg['msg']);
         }           
     }
-
+    
     //----
-    public function showEdit($id){
+    public function list(){
                         
     }
-    public function edit(){
+
+    //----
+    public function delShow(){
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 2){            
+            return $this->view('delview');
+        }else{
+            return $this->redirect('/');
+        }
+    }
+
+    public function delete(){
         $this->headJson();
         $this->validateToken($_POST['token_']); 
+
+        $id = !empty($_POST['idSale']) ? $_POST['idSale'] : NULL;
         
-        
+        $msg['msg'] = [];
+
+        if($id == null){ $msg['msg']['empty'] = Msg::EMPTY_FIELD; }
+        if(empty($msg['msg'])){
+            $obj = new Sale();
+            if($obj->remove($id)){
+                $msg['msg']['success'] = Msg::MSG_SUCCESS;            
+            }else{
+                $msg['msg']['fail'] = Msg::FAILED_OPERATION; 
+            }
+        }
+        echo json_encode($msg['msg']);
     }
 }

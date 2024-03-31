@@ -18,6 +18,7 @@ class Msg{
     const AUTH_ERROR    = "Idenficación fallida!!.";
     const EMPTY_SUB     = "Aún no se ha agregado subcategorías para esta categoría.";
     const EMPTY_SECTION = "No hay nada registrado.";
+    const CLIENT_ERROR    = "El cliente no esta registrado!!.";
     
     const PASS_NOTMATCH = "Las contraseñas no coinciden";
     const FAILED_OPERATION = "La operación a fallado!.";

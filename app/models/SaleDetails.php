@@ -63,4 +63,22 @@ class SaleDetails extends Model
         }
         return $bool;
     }
+
+    public function getAllforId($id){
+        $sql = "SELECT
+        producto_,
+        cantidad_prod as cantidad
+        FROM detalle_venta LEFT OUTER JOIN producto USING(id_prod)
+        WHERE id_venta ='$id'";
+        
+        $result = $this->connection->query($sql);
+        if($result->num_rows > 0){
+            while($data = $result->fetch_assoc()){
+                $obj[] = $data;
+            }
+            return $obj;
+        }else{
+            return false;
+        }
+    }
 }

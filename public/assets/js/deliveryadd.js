@@ -1,15 +1,17 @@
-//add client
-if(document.querySelector('.btn-add-cli') !== null){    
-    document.querySelector('.btn-add-cli').addEventListener('click',()=>{
-        const formCli = document.querySelector('#formClient')
-        const accion = document.querySelector('.btn-add-cli').value
-        const data = new FormData(formCli)
+//add delivery
+if(document.querySelector('.btn-add-delivery') !== null){    
+    document.querySelector('.btn-add-delivery').addEventListener('click',()=>{
+        const formDelivery = document.querySelector('#formDelivery')
 
-        fetch('/agregar-cliente/'+accion,{
+        const data = new FormData(formDelivery)
+
+        fetch('/agregar-despacho',{
             method:'post',
             body:data
         }).then(response => response.json())
         .then(msg =>{
+            //console.log(msg.field)
+
             const msgError = document.querySelector('.edit-box')
             let frag = document.createDocumentFragment()
             let h6 = document.createElement('h6')
@@ -20,7 +22,12 @@ if(document.querySelector('.btn-add-cli') !== null){
                 h6.style.color="var(--color10)";
                 h6.textContent = msg.field
                 frag.appendChild(h6)
-            }             
+            }   
+            if(msg.client){ 
+                h6.style.color="var(--color10)";
+                h6.textContent = msg.client
+                frag.appendChild(h6)
+            }          
             if(msg.fail){ 
             h6.style.color="var(--color10)";
             h6.textContent = msg.fail
@@ -31,7 +38,7 @@ if(document.querySelector('.btn-add-cli') !== null){
                 h6.textContent = msg.success
                 frag.append(h6)
 
-                formCli.reset()
+                formDelivery.reset()
              }
              msgError.prepend(frag)
 

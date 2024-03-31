@@ -182,7 +182,7 @@ class Product extends Model
         
         if($result->cod != null || !empty($result->cod) || isset($result->cod))
         {
-            $sql = "UPDATE producto SET stock = '{$this->getStock()}' WHERE cod = '{$this->getCod()}';";
+            $sql = "UPDATE producto SET fecactual = NOW(), stock = '{$this->getStock()}' WHERE cod = '{$this->getCod()}';";
             $this->connection->query($sql);
             $bool = true;
         }

@@ -2,7 +2,8 @@
 <?php require_once "layout/partials/sidebar.php"; ?>
 
     <div class="textTitle">
-        <h4 id="document-sale"><?=$document?></h4>        
+        <h4 id="document-sale"><?=$document?></h4>
+            
     </div>
     <div class="edit-box">  
         <div style="text-align:center;"><h4 id="msg-wait" hidden></h4></div>
@@ -59,19 +60,19 @@
                     <br>
                     <input type="button" class="btn-save-doc btn btn-primary" value="Guardar">
                 </form><br> 
-           </div>    
-                   
-       
-        <!----------------------- BTN PDF ---------------------->        
-        <div>
-            <button id="pdf-generator" style="padding: 4px;width:auto;border-radius:8px;background-color:yellow;" hidden>
-                DESCARGAR PDF
-            </button>
-        </div>
+
+                <!----------------------- BTN PDF ---------------------->        
+                <div>
+                    <button id="pdf-generator" style="padding: 4px;width:auto;border-radius:8px;background-color:yellow;" hidden>
+                        DESCARGAR PDF
+                    </button>
+                </div>
+           </div> 
     </div>
 
 <script src="/assets/js/sale.js" type="module"></script>
 <!-- jspdf cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script> -->
+<script src="/assets/pdf/jspdf.min.js" type="module"></script>
 <!--------------->
 <?php require_once "layout/down.php"; ?>

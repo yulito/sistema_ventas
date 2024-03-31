@@ -13,7 +13,7 @@ use App\Controllers\LocationController;
 use App\Controllers\OfficeController;
 use App\Controllers\SaleController;
 use App\Controllers\ShrinkageController;
-use App\Models\Shrinkage;
+use App\Controllers\DeliveryController;
 
 // ---- todas las rutas
 Route::get('/', [SessionController::class, 'index']);
@@ -92,6 +92,17 @@ Route::post('/gestion-sucursal', [OfficeController::class, 'store']);
 Route::get('/sistema-venta', [SaleController::class, 'index']); 
 Route::get('/documento/:doc', [SaleController::class, 'show']);
 Route::post('/documento/:doc', [SaleController::class, 'store']);
+Route::get('/eliminar-venta', [SaleController::class, 'delShow']);
+Route::post('/eliminar-venta', [SaleController::class, 'delete']); 
+
+//---- despachos
+Route::get('/despachos', [DeliveryController::class, 'index']); 
+Route::get('/listar-despachos/:param', [DeliveryController::class, 'list']); 
+Route::get('/agregar-despacho', [DeliveryController::class, 'showAdd']);
+Route::post('/agregar-despacho', [DeliveryController::class, 'store']);
+Route::get('/ver-despacho/:id', [DeliveryController::class, 'show']);
+Route::post('/editar-despacho', [DeliveryController::class, 'edit']);
+Route::get('/eliminar-despacho/:id',[DeliveryController::class, 'delete']);
 
 // --------------------
 Lib\Route::dispatch();
