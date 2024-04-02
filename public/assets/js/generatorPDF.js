@@ -27,12 +27,12 @@ export function docPDF(element,docSale,msg){
             doc.text(20,(i+20), 'Comuna: '+msg.location.comuna_) 
         }else{ doc.text(20,(i+20), 'Comuna: --') }         
     }    
-    doc.text(20, (i+=26),'***********************************************************************************************');
+    doc.text(20, (i+=26),'********************************************************************************************');
    
     element.details.forEach(data => {            
         data.product, data.qn, data.val, data.valueu, data.total
         doc.text(20,(i+=5), 'Producto: '+data.product) 
-        doc.text(20,(i+=5), 'Cantidad: '+data.qn+'  \|  Val/uni: '+data.val+'  \|  Desc/prod: '+data.valueu+'  \|  Total: '+data.total)
+        doc.text(20,(i+=5), 'Cantidad: '+data.qn+'  \|  Val/uni: '+data.val+'  \|  Desc/prod: '+data.valueu+'%  \|  Total: '+data.total)
         doc.text(20,(i+=5), '_____________________________________________________________________________')
     })
     doc.save(docSale+'_'+today.toLocaleDateString()+'_'+msg.nro+'_'+'venta.pdf');

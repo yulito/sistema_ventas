@@ -107,7 +107,27 @@ class SaleController extends Controller{
     
     //----
     public function list(){
-                        
+        if($_SESSION['auth'] && $_SESSION['auth']->id_tipo == 1){
+            return $this->view('showlistsale');
+        }else{
+            return $this->redirect('/');
+        } 
+    }
+
+    public function getList(){
+        $this->headJson();       
+
+        $date1 = $_POST['idfrom'];
+        $date2 = $_POST['idto'];
+
+        $obj = new Sale();
+        $result = $obj->getAll($date1,$date2);
+        if($result){
+            echo json_encode($result);
+        }else{
+            $msg['msg']['emptySection'] = Msg::EMPTY_SECTION;
+            echo json_encode($msg['msg']);
+        }
     }
 
     //----
@@ -137,5 +157,25 @@ class SaleController extends Controller{
             }
         }
         echo json_encode($msg['msg']);
+    }
+
+    public function showOne($id){
+        if(isset($_SESSION['auth'])){
+            $obj = new Sale();
+            $objDetail = new SaleDetails();
+
+            $sale = $obj->getOne($id);
+            //sleep(1);
+            $detail = $objDetail->getAllforId($sale->id_venta);
+
+            if($sale && $detail){
+                return $this->view('showsale',['detail'=>$detail, 'sale'=>$sale]);
+            }else{
+                $msg = Msg::ERROR_404;
+                return $this->view('error/page404', compact("msg"));
+            }
+        }else{
+            return $this->redirect('/');
+        }
     }
 }

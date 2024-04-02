@@ -66,6 +66,8 @@ class SaleDetails extends Model
 
     public function getAllforId($id){
         $sql = "SELECT
+        desc_detalle,
+        total_detalle,
         producto_,
         cantidad_prod as cantidad
         FROM detalle_venta LEFT OUTER JOIN producto USING(id_prod)

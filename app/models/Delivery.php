@@ -62,11 +62,11 @@ class Delivery extends Model
         return $this->connection->query($sql);
     }
     public function getAll($param){
-        $sql = "SELECT id_despacho, fecdespacho, fecmodificar, estado FROM despacho WHERE estado = 1 OR estado = 2 ";
+        $sql = "SELECT id_despacho, fecdespacho, fecmodificar, estado FROM despacho WHERE estado <> 0 ";
         if(!empty($param)){
-            $sql .= " OR id_despacho LIKE '%$param%' OR fecdespacho LIKE '%$param%'";
+            $sql .= " AND id_despacho LIKE '%$param%'";
         }else{
-            $sql .= "ORDER BY id_despacho DESC LIMIT 0,100";
+            $sql .= "ORDER BY estado ASC LIMIT 0,100";
         }
         $result = $this->connection->query($sql);
         if($result->num_rows > 0){

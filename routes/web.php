@@ -94,6 +94,9 @@ Route::get('/documento/:doc', [SaleController::class, 'show']);
 Route::post('/documento/:doc', [SaleController::class, 'store']);
 Route::get('/eliminar-venta', [SaleController::class, 'delShow']);
 Route::post('/eliminar-venta', [SaleController::class, 'delete']); 
+Route::get('/ventas-realizadas', [SaleController::class, 'list']); 
+Route::post('/ventas', [SaleController::class, 'getList']);
+Route::get('/mostrar-venta/:id', [SaleController::class, 'showOne']);
 
 //---- despachos
 Route::get('/despachos', [DeliveryController::class, 'index']); 
@@ -102,7 +105,7 @@ Route::get('/agregar-despacho', [DeliveryController::class, 'showAdd']);
 Route::post('/agregar-despacho', [DeliveryController::class, 'store']);
 Route::get('/ver-despacho/:id', [DeliveryController::class, 'show']);
 Route::post('/editar-despacho', [DeliveryController::class, 'edit']);
-Route::get('/eliminar-despacho/:id',[DeliveryController::class, 'delete']);
+Route::get('/eliminar-despacho/:id',[DeliveryController::class, 'delete']); 
 
 // --------------------
 Lib\Route::dispatch();

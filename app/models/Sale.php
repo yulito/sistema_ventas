@@ -110,16 +110,43 @@ class Sale extends Model
         return $result;
     }
 
-    /*    
-    public function getAll(){
-        $sql = "SELECT * FROM area";
-        $obj = $this->connection->query($sql);
-        return $obj;
+    public function getAll($d1,$d2){ 
+        $sql = "SELECT id_venta, fecventa, total, doc, vendedor 
+        FROM venta LEFT OUTER JOIN documento USING(id_doc)
+        WHERE estado = 1 AND date_format(fecventa,'%Y-%m-%d')
+        BETWEEN date_format('$d1','%Y-%m-%d') AND date_format('$d2','%Y-%m-%d');";
+        
+        $result = $this->connection->query($sql);
+        if($result->num_rows > 0){
+            while($data = $result->fetch_assoc()){
+                $obj[] = $data;
+            }
+            return $obj;
+        }else{
+            return false;
+        }
     }
+    
     public function getOne($id){
-        $sql = "SELECT * FROM area WHERE id_area = '$id'";
+        $sql = "SELECT 
+        id_venta,
+        fecventa,
+        subtotal,
+        descventa,
+        total,
+        rutempresa,
+        nomempresa,
+        direcemp,
+        comuna_,
+        id_doc,
+        doc,
+        pago 
+        FROM venta LEFT OUTER JOIN comuna USING(id_comuna)                    
+                    LEFT OUTER JOIN documento USING(id_doc)
+                    LEFT OUTER JOIN medio_pago USING(id_pago)
+                    WHERE id_venta = '$id'";
         $obj = $this->connection->query($sql);
         return $obj->fetch_object();
     }    
- */
+ 
 }

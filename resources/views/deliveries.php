@@ -17,7 +17,7 @@
                     <div class="container-fluid">
                         <!-- buscador -->
                         <div class="d-flex">
-                            <input class="form-control me-2" type="search" name="searchDelivery" id="searchDelivery" placeholder="Buscador" aria-label="Buscador">                    
+                            <input class="form-control me-2" type="search" name="searchDelivery" id="searchDelivery" placeholder="Buscar nro despacho" aria-label="Buscador">                    
                         </div>
                         <!------------->
                     </div>
