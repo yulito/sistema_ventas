@@ -12,7 +12,7 @@ if(document.getElementById('searchProd') !== null){
     const search = document.getElementById('searchProd')
     search.addEventListener('keyup',(e)=>{
         e.stopPropagation
-        let s = search.value == "" ? false : search.value.replaceAll(" ", "0y0")
+        let s = search.value == "" ? false : search.value.replaceAll(" ", "0space0")
         console.log(s)
         loadProd(s)
 
