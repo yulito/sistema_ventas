@@ -8,7 +8,7 @@
     <!-- buscador -->
     <div class="d-flex">
         <input class="form-control me-2" type="search" name="searchCod" id="searchCod" 
-        list="options" placeholder="Buscador" aria-label="Buscador">
+        list="options" placeholder="Nombre de producto" aria-label="Buscador">
         <datalist id="options">
             <template id="tmp-ops">
                 <option class="item-op"></option> 
