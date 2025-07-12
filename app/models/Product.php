@@ -118,7 +118,7 @@ class Product extends Model
                 p.stock, p.valor, p.desc_x_prod, m.marca_, a.area_
                 FROM producto p LEFT OUTER JOIN marca m USING(id_marca)                            
                             LEFT OUTER JOIN area a USING(id_area)
-                            WHERE cod LIKE '%$param%' OR producto_ LIKE '%$param%' LIMIT 0,4";   // OR producto_ LIKE '%$param%'
+                            WHERE producto_ LIKE '%$param%' LIMIT 0,8"; 
         $prod = $this->connection->query($sql);
         if($prod->num_rows > 0){
             while($data = $prod->fetch_assoc()){
@@ -142,7 +142,7 @@ class Product extends Model
     }
     public function save(){
         $sql = "INSERT INTO producto (cod, producto_, proddescrip, foto, umedida, stock, valor, desc_x_prod, id_marca, id_sub, id_area) 
-                VALUES ('{$this->getCod()}','{$this->getProd()}','{$this->getDescription()}','{$this->getPhoto()}','{$this->getMeasure()}','{$this->getStock()}','{$this->getPrice()}','{$this->getDiscount()}','{$this->getBrand()}','{$this->getSubcategory()}','{$this->getArea()}')";
+                VALUES (LOWER('{$this->getCod()}'),UPPER('{$this->getProd()}'),'{$this->getDescription()}','{$this->getPhoto()}','{$this->getMeasure()}','{$this->getStock()}','{$this->getPrice()}','{$this->getDiscount()}','{$this->getBrand()}','{$this->getSubcategory()}','{$this->getArea()}')";
         $result = $this->connection->query($sql);
         return $result;
     }
@@ -166,7 +166,6 @@ class Product extends Model
             $sql .= "foto = '{$this->getPhoto()}', ";
         }
         $sql .= "umedida = '{$this->getMeasure()}',
-                 stock = '{$this->getStock()}',
                  valor = '{$this->getPrice()}',
                  desc_x_prod = '{$this->getDiscount()}',
                  id_marca = '{$this->getBrand()}',
