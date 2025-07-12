@@ -36,7 +36,13 @@ class ProductController extends Controller{
         $this->headJson();
         $msg['msg'] = [];
         if($prod){
-            $prod = str_replace("0y0", " ", $prod);            
+            $prod = str_replace("0space0", " ", $prod);      // Espacios
+            $prod = str_replace("0plus0", "+", $prod);   // Signo más
+            $prod = str_replace("0dot0", ".", $prod);    // Punto
+            $prod = str_replace("0dash0", "-", $prod);   // Guion
+            $prod = str_replace("0slash0", "/", $prod);  // Barra
+            $prod = str_replace("0quote0", '"', $prod);  // Comillas dobles
+            
             $p = $prod;
             $obj = new Product();
             $result = $obj->getSearch($p);
@@ -196,7 +202,6 @@ class ProductController extends Controller{
             $obj->setDescription($text);
             $obj->setPhoto($namePhoto);
             $obj->setMeasure($measure);
-            $obj->setStock(0);
             $obj->setPrice($price);
             $obj->setDiscount($desc);
             $obj->setBrand($brand);
