@@ -21,7 +21,7 @@ class ProductController extends Controller{
         if($prod === 'false'){
             $p = "";
         }else{
-            $prod = str_replace("0y0", " ", $prod);
+            $prod = str_replace("0space0", " ", $prod);
             $p = $prod;
         }
 
