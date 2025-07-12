@@ -36,13 +36,17 @@ search.addEventListener('keyup',(e)=>{
     e.preventDefault
 
     //rellenando los espacios en blanco
-    let lookfor = search.value == "" ? false : search.value.replaceAll(" ", "0y0") 
+    let lookfor = search.value == "" ? false : search.value
+    .replaceAll(" ", "0space0")   // Para espacios en blanco
+    .replaceAll("+", "0plus0")  // Para el signo más
+    .replaceAll(".", "0dot0")   // Para el punto
+    .replaceAll("-", "0dash0")  // Para el guion
+    .replaceAll("/", "0slash0") // Para la barra
+    .replaceAll('"', "0quote0"); // Para las comillas dobles
 
     if(e.key !== 'Enter'){   
         //limpiar lista de opciones
         ops.innerHTML = "" 
-        //let regex = /[+-/$%&()#"'!¡¿?]/g
-        //let w = lookfor.replaceAll('"','\"')
         getList(lookfor)
 
     }else{
