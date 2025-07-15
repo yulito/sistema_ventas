@@ -15,14 +15,35 @@ class ProductController extends Controller{
             return $this->redirect('/');
         }        
     }
+
+    private function reemplazarAcentos($texto) {
+        // Arrays de caracteres a buscar y reemplazar
+        $acentos = array('á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ü', 'Ü');
+        $mod = array('0aca0', '0ace0', '0aci0', '0aco0', '0acu0', '0acam0', '0acem0', '0acim0', '0acom0', '0acum0', '0acd0', '0acdm0');
+
+        // str_replace reemplaza todas las ocurrencias de los elementos en $acentos
+        // por los correspondientes en $sin_acentos.
+        return str_replace($mod, $acentos,$texto);
+    }
+    
     public function list($prod){    
         header('Content-Type: text/html; charset=utf-8'); 
         $p = null;
         if($prod === 'false'){
             $p = "";
         }else{
-            $prod = str_replace("0space0", " ", $prod);
-            $p = $prod;
+            $prod = str_replace("0space0", " ", $prod);      // Espacios
+            $prod = str_replace("0plus0", "+", $prod);   // Signo más
+            $prod = str_replace("0dot0", ".", $prod);    // Punto
+            $prod = str_replace("0dash0", "-", $prod);   // Guion
+            $prod = str_replace("0slash0", "/", $prod);  // Barra
+            $prod = str_replace("0quote0", '"', $prod);
+            
+            $prod = str_replace("0hash0", "#", $prod); 
+            $prod = str_replace("0cash0", "$", $prod);  
+            $prod = str_replace("0porcent0", '%', $prod);
+            $acentos = $this->reemplazarAcentos($prod);
+            $p = $acentos;
         }
 
         $this->headJson();                
@@ -41,9 +62,14 @@ class ProductController extends Controller{
             $prod = str_replace("0dot0", ".", $prod);    // Punto
             $prod = str_replace("0dash0", "-", $prod);   // Guion
             $prod = str_replace("0slash0", "/", $prod);  // Barra
-            $prod = str_replace("0quote0", '"', $prod);  // Comillas dobles
+            $prod = str_replace("0quote0", '"', $prod);
             
-            $p = $prod;
+            $prod = str_replace("0hash0", "#", $prod); 
+            $prod = str_replace("0cash0", "$", $prod);  
+            $prod = str_replace("0porcent0", '%', $prod);
+            $acentos = $this->reemplazarAcentos($prod);
+            $p = $acentos;
+            
             $obj = new Product();
             $result = $obj->getSearch($p);
             echo json_encode($result);
