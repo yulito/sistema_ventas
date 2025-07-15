@@ -31,18 +31,56 @@ window.addEventListener('load',(e)=>{
     localStorage.clear()
 })
 
+function reemplazarAcentos(texto) {
+    // Asegurarse de que texto sea una cadena antes de intentar usar .replace()
+  if (typeof texto !== 'string') {
+    // Si no es una cadena, conviértelo a una cadena vacía o maneja el error como prefieras
+    texto = String(texto || ''); // Esto convierte cualquier valor a string, incluyendo false a "false"
+                               // Una opción más segura si esperas solo strings: return ""; o throw new Error(...)
+  }
+  // Expresión regular para buscar todas las vocales acentuadas (minúsculas y mayúsculas)
+  // 'g' para búsqueda global (todas las ocurrencias)
+  // 'i' para ignorar mayúsculas/minúsculas (aunque aquí las listamos explícitamente)
+  const regex = /[áéíóúÁÉÍÓÚüÜ]/g;
+
+  // Objeto de mapeo para los reemplazos
+  const mapaAcentos = {
+    'á': '0aca0', 'Á': '0acam0',
+    'é': '0ace0', 'É': '0acem0',
+    'í': '0aci0', 'Í': '0acim0',
+    'ó': '0aco0', 'Ó': '0acom0',
+    'ú': '0acu0', 'Ú': '0acum0',
+    'ü': '0acd0', 'Ü': '0acdm0' // Incluimos la 'ü' diéresis si es necesario
+  };
+
+  return texto.replace(regex, function(match) {
+    return mapaAcentos[match];
+  });
+}
+
 //input dinamic filter 
 search.addEventListener('keyup',(e)=>{ 
     e.preventDefault
 
-    //rellenando los espacios en blanco
-    let lookfor = search.value == "" ? false : search.value
-    .replaceAll(" ", "0space0")   // Para espacios en blanco
-    .replaceAll("+", "0plus0")  // Para el signo más
-    .replaceAll(".", "0dot0")   // Para el punto
-    .replaceAll("-", "0dash0")  // Para el guion
-    .replaceAll("/", "0slash0") // Para la barra
-    .replaceAll('"', "0quote0"); // Para las comillas dobles
+     // Si search.value es vacío, 'look' será una cadena vacía "".
+    let look = search.value || ""; // Si search.value es vacío, usa una cadena vacía.
+    
+    // Luego, aplica los replaceAll si 'look' no está vacío
+    if (look !== "") {
+        look = look
+            .replaceAll(" ", "0space0")
+            .replaceAll("+", "0plus0")
+            .replaceAll(".", "0dot0")
+            .replaceAll("-", "0dash0")
+            .replaceAll("_", "0line0")
+            .replaceAll("#", "0hash0")
+            .replaceAll("$", "0cash0")
+            .replaceAll("%", "0porcent0")
+            .replaceAll("/", "0slash0")
+            .replaceAll('"', "0quote0");
+    }
+
+    let lookfor = reemplazarAcentos(look)
 
     if(e.key !== 'Enter'){   
         //limpiar lista de opciones
